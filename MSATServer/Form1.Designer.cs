@@ -31,26 +31,26 @@ namespace MSATServer
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            DevExpress.Skins.SkinPaddingEdges skinPaddingEdges1 = new DevExpress.Skins.SkinPaddingEdges();
-            DevExpress.XtraBars.Ribbon.GalleryItemGroup galleryItemGroup1 = new DevExpress.XtraBars.Ribbon.GalleryItemGroup();
-            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem1 = new DevExpress.XtraBars.Ribbon.GalleryItem();
-            DevExpress.Utils.SuperToolTip superToolTip1 = new DevExpress.Utils.SuperToolTip();
-            DevExpress.Utils.ToolTipItem toolTipItem1 = new DevExpress.Utils.ToolTipItem();
-            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem2 = new DevExpress.XtraBars.Ribbon.GalleryItem();
-            DevExpress.Utils.SuperToolTip superToolTip2 = new DevExpress.Utils.SuperToolTip();
-            DevExpress.Utils.ToolTipItem toolTipItem2 = new DevExpress.Utils.ToolTipItem();
-            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem3 = new DevExpress.XtraBars.Ribbon.GalleryItem();
-            DevExpress.Utils.SuperToolTip superToolTip3 = new DevExpress.Utils.SuperToolTip();
-            DevExpress.Utils.ToolTipItem toolTipItem3 = new DevExpress.Utils.ToolTipItem();
-            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem4 = new DevExpress.XtraBars.Ribbon.GalleryItem();
-            DevExpress.Utils.SuperToolTip superToolTip4 = new DevExpress.Utils.SuperToolTip();
-            DevExpress.Utils.ToolTipItem toolTipItem4 = new DevExpress.Utils.ToolTipItem();
-            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem5 = new DevExpress.XtraBars.Ribbon.GalleryItem();
-            DevExpress.Utils.SuperToolTip superToolTip5 = new DevExpress.Utils.SuperToolTip();
-            DevExpress.Utils.ToolTipItem toolTipItem5 = new DevExpress.Utils.ToolTipItem();
-            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem6 = new DevExpress.XtraBars.Ribbon.GalleryItem();
-            DevExpress.Utils.SuperToolTip superToolTip6 = new DevExpress.Utils.SuperToolTip();
-            DevExpress.Utils.ToolTipItem toolTipItem6 = new DevExpress.Utils.ToolTipItem();
+            DevExpress.Skins.SkinPaddingEdges skinPaddingEdges2 = new DevExpress.Skins.SkinPaddingEdges();
+            DevExpress.XtraBars.Ribbon.GalleryItemGroup galleryItemGroup2 = new DevExpress.XtraBars.Ribbon.GalleryItemGroup();
+            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem7 = new DevExpress.XtraBars.Ribbon.GalleryItem();
+            DevExpress.Utils.SuperToolTip superToolTip7 = new DevExpress.Utils.SuperToolTip();
+            DevExpress.Utils.ToolTipItem toolTipItem7 = new DevExpress.Utils.ToolTipItem();
+            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem8 = new DevExpress.XtraBars.Ribbon.GalleryItem();
+            DevExpress.Utils.SuperToolTip superToolTip8 = new DevExpress.Utils.SuperToolTip();
+            DevExpress.Utils.ToolTipItem toolTipItem8 = new DevExpress.Utils.ToolTipItem();
+            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem9 = new DevExpress.XtraBars.Ribbon.GalleryItem();
+            DevExpress.Utils.SuperToolTip superToolTip9 = new DevExpress.Utils.SuperToolTip();
+            DevExpress.Utils.ToolTipItem toolTipItem9 = new DevExpress.Utils.ToolTipItem();
+            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem10 = new DevExpress.XtraBars.Ribbon.GalleryItem();
+            DevExpress.Utils.SuperToolTip superToolTip10 = new DevExpress.Utils.SuperToolTip();
+            DevExpress.Utils.ToolTipItem toolTipItem10 = new DevExpress.Utils.ToolTipItem();
+            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem11 = new DevExpress.XtraBars.Ribbon.GalleryItem();
+            DevExpress.Utils.SuperToolTip superToolTip11 = new DevExpress.Utils.SuperToolTip();
+            DevExpress.Utils.ToolTipItem toolTipItem11 = new DevExpress.Utils.ToolTipItem();
+            DevExpress.XtraBars.Ribbon.GalleryItem galleryItem12 = new DevExpress.XtraBars.Ribbon.GalleryItem();
+            DevExpress.Utils.SuperToolTip superToolTip12 = new DevExpress.Utils.SuperToolTip();
+            DevExpress.Utils.ToolTipItem toolTipItem12 = new DevExpress.Utils.ToolTipItem();
             this.ribbonControl1 = new DevExpress.XtraBars.Ribbon.RibbonControl();
             this.WINCMD = new DevExpress.XtraBars.BarButtonItem();
             this.xp_ShellCmd = new DevExpress.XtraBars.BarButtonItem();
@@ -88,10 +88,19 @@ namespace MSATServer
             this.ribbonPageGroup3 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.repositoryItemTextEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.ribbonPageGroup4 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.spreadsheetControl1 = new DevExpress.XtraSpreadsheet.SpreadsheetControl();
+            this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
+            this.listView1 = new System.Windows.Forms.ListView();
+            this.treeList1 = new DevExpress.XtraTreeList.TreeList();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
+            this.panelControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
+            this.groupControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.treeList1)).BeginInit();
             this.SuspendLayout();
             // 
             // ribbonControl1
@@ -131,7 +140,7 @@ namespace MSATServer
             this.ribbonControl1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemTextEdit1,
             this.repositoryItemMemoEdit1});
-            this.ribbonControl1.Size = new System.Drawing.Size(1312, 225);
+            this.ribbonControl1.Size = new System.Drawing.Size(1460, 225);
             // 
             // WINCMD
             // 
@@ -222,9 +231,9 @@ namespace MSATServer
             this.skinRibbonGalleryBarItem1.Gallery.ItemCheckMode = DevExpress.XtraBars.Ribbon.Gallery.ItemCheckMode.SingleRadio;
             this.skinRibbonGalleryBarItem1.Gallery.ItemImageLayout = DevExpress.Utils.Drawing.ImageLayoutMode.Squeeze;
             this.skinRibbonGalleryBarItem1.Gallery.ItemImageLocation = DevExpress.Utils.Locations.Top;
-            skinPaddingEdges1.Left = 8;
-            skinPaddingEdges1.Right = 8;
-            this.skinRibbonGalleryBarItem1.Gallery.ItemImagePadding = skinPaddingEdges1;
+            skinPaddingEdges2.Left = 8;
+            skinPaddingEdges2.Right = 8;
+            this.skinRibbonGalleryBarItem1.Gallery.ItemImagePadding = skinPaddingEdges2;
             this.skinRibbonGalleryBarItem1.Gallery.ScaleImages = DevExpress.Utils.DefaultBoolean.False;
             this.skinRibbonGalleryBarItem1.Id = 24;
             this.skinRibbonGalleryBarItem1.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("skinRibbonGalleryBarItem1.ImageOptions.SvgImage")));
@@ -238,59 +247,59 @@ namespace MSATServer
             // 
             this.skinPaletteRibbonGalleryBarItem1.Gallery.AllowHtmlText = true;
             this.skinPaletteRibbonGalleryBarItem1.Gallery.ColumnCount = 4;
-            galleryItemGroup1.Caption = "General";
-            galleryItem1.Caption = "Default";
-            galleryItem1.Checked = true;
-            galleryItem1.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image")));
-            toolTipItem1.Text = "Default";
-            superToolTip1.Items.Add(toolTipItem1);
-            galleryItem1.SuperTip = superToolTip1;
-            galleryItem1.Tag = "DefaultSkinPalette";
-            galleryItem1.Value = "DefaultSkinPalette";
-            galleryItem2.Caption = "Blue Dark";
-            galleryItem2.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image1")));
-            toolTipItem2.Text = "Blue Dark";
-            superToolTip2.Items.Add(toolTipItem2);
-            galleryItem2.SuperTip = superToolTip2;
-            galleryItem2.Tag = "Blue Dark";
-            galleryItem2.Value = "Blue Dark";
-            galleryItem3.Caption = "Pine Light";
-            galleryItem3.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image2")));
-            toolTipItem3.Text = "Pine Light";
-            superToolTip3.Items.Add(toolTipItem3);
-            galleryItem3.SuperTip = superToolTip3;
-            galleryItem3.Tag = "Pine Light";
-            galleryItem3.Value = "Pine Light";
-            galleryItem4.Caption = "Pine Dark";
-            galleryItem4.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image3")));
-            toolTipItem4.Text = "Pine Dark";
-            superToolTip4.Items.Add(toolTipItem4);
-            galleryItem4.SuperTip = superToolTip4;
-            galleryItem4.Tag = "Pine Dark";
-            galleryItem4.Value = "Pine Dark";
-            galleryItem5.Caption = "Violet Light";
-            galleryItem5.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image4")));
-            toolTipItem5.Text = "Violet Light";
-            superToolTip5.Items.Add(toolTipItem5);
-            galleryItem5.SuperTip = superToolTip5;
-            galleryItem5.Tag = "Violet Light";
-            galleryItem5.Value = "Violet Light";
-            galleryItem6.Caption = "Violet Dark";
-            galleryItem6.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image5")));
-            toolTipItem6.Text = "Violet Dark";
-            superToolTip6.Items.Add(toolTipItem6);
-            galleryItem6.SuperTip = superToolTip6;
-            galleryItem6.Tag = "Violet Dark";
-            galleryItem6.Value = "Violet Dark";
-            galleryItemGroup1.Items.AddRange(new DevExpress.XtraBars.Ribbon.GalleryItem[] {
-            galleryItem1,
-            galleryItem2,
-            galleryItem3,
-            galleryItem4,
-            galleryItem5,
-            galleryItem6});
+            galleryItemGroup2.Caption = "General";
+            galleryItem7.Caption = "Default";
+            galleryItem7.Checked = true;
+            galleryItem7.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image")));
+            toolTipItem7.Text = "Default";
+            superToolTip7.Items.Add(toolTipItem7);
+            galleryItem7.SuperTip = superToolTip7;
+            galleryItem7.Tag = "DefaultSkinPalette";
+            galleryItem7.Value = "DefaultSkinPalette";
+            galleryItem8.Caption = "Blue Dark";
+            galleryItem8.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image1")));
+            toolTipItem8.Text = "Blue Dark";
+            superToolTip8.Items.Add(toolTipItem8);
+            galleryItem8.SuperTip = superToolTip8;
+            galleryItem8.Tag = "Blue Dark";
+            galleryItem8.Value = "Blue Dark";
+            galleryItem9.Caption = "Pine Light";
+            galleryItem9.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image2")));
+            toolTipItem9.Text = "Pine Light";
+            superToolTip9.Items.Add(toolTipItem9);
+            galleryItem9.SuperTip = superToolTip9;
+            galleryItem9.Tag = "Pine Light";
+            galleryItem9.Value = "Pine Light";
+            galleryItem10.Caption = "Pine Dark";
+            galleryItem10.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image3")));
+            toolTipItem10.Text = "Pine Dark";
+            superToolTip10.Items.Add(toolTipItem10);
+            galleryItem10.SuperTip = superToolTip10;
+            galleryItem10.Tag = "Pine Dark";
+            galleryItem10.Value = "Pine Dark";
+            galleryItem11.Caption = "Violet Light";
+            galleryItem11.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image4")));
+            toolTipItem11.Text = "Violet Light";
+            superToolTip11.Items.Add(toolTipItem11);
+            galleryItem11.SuperTip = superToolTip11;
+            galleryItem11.Tag = "Violet Light";
+            galleryItem11.Value = "Violet Light";
+            galleryItem12.Caption = "Violet Dark";
+            galleryItem12.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("resource.Image5")));
+            toolTipItem12.Text = "Violet Dark";
+            superToolTip12.Items.Add(toolTipItem12);
+            galleryItem12.SuperTip = superToolTip12;
+            galleryItem12.Tag = "Violet Dark";
+            galleryItem12.Value = "Violet Dark";
+            galleryItemGroup2.Items.AddRange(new DevExpress.XtraBars.Ribbon.GalleryItem[] {
+            galleryItem7,
+            galleryItem8,
+            galleryItem9,
+            galleryItem10,
+            galleryItem11,
+            galleryItem12});
             this.skinPaletteRibbonGalleryBarItem1.Gallery.Groups.AddRange(new DevExpress.XtraBars.Ribbon.GalleryItemGroup[] {
-            galleryItemGroup1});
+            galleryItemGroup2});
             this.skinPaletteRibbonGalleryBarItem1.Gallery.ImageSize = new System.Drawing.Size(120, 84);
             this.skinPaletteRibbonGalleryBarItem1.Gallery.ItemCheckMode = DevExpress.XtraBars.Ribbon.Gallery.ItemCheckMode.SingleRadio;
             this.skinPaletteRibbonGalleryBarItem1.Gallery.MinimumColumnCount = 2;
@@ -449,22 +458,70 @@ namespace MSATServer
             this.ribbonPageGroup4.Name = "ribbonPageGroup4";
             this.ribbonPageGroup4.Text = "                                   ";
             // 
+            // panelControl1
+            // 
+            this.panelControl1.AutoSize = true;
+            this.panelControl1.Controls.Add(this.groupControl1);
+            this.panelControl1.Controls.Add(this.spreadsheetControl1);
+            this.panelControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelControl1.Location = new System.Drawing.Point(0, 225);
+            this.panelControl1.Name = "panelControl1";
+            this.panelControl1.Size = new System.Drawing.Size(1460, 753);
+            this.panelControl1.TabIndex = 8;
+            this.panelControl1.Paint += new System.Windows.Forms.PaintEventHandler(this.panelControl1_Paint);
+            // 
             // spreadsheetControl1
             // 
-            this.spreadsheetControl1.Location = new System.Drawing.Point(318, 231);
+            this.spreadsheetControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.spreadsheetControl1.CausesValidation = false;
+            this.spreadsheetControl1.Location = new System.Drawing.Point(296, 2);
             this.spreadsheetControl1.MenuManager = this.ribbonControl1;
             this.spreadsheetControl1.Name = "spreadsheetControl1";
-            this.spreadsheetControl1.Padding = new System.Windows.Forms.Padding(200, 100, 0, 0);
-            this.spreadsheetControl1.Size = new System.Drawing.Size(982, 730);
-            this.spreadsheetControl1.TabIndex = 3;
+            this.spreadsheetControl1.Size = new System.Drawing.Size(1164, 751);
+            this.spreadsheetControl1.TabIndex = 4;
             this.spreadsheetControl1.Text = "spreadsheetControl1";
+            // 
+            // groupControl1
+            // 
+            this.groupControl1.Controls.Add(this.listView1);
+            this.groupControl1.Controls.Add(this.treeList1);
+            this.groupControl1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.groupControl1.Location = new System.Drawing.Point(2, 2);
+            this.groupControl1.Name = "groupControl1";
+            this.groupControl1.Size = new System.Drawing.Size(296, 749);
+            this.groupControl1.TabIndex = 7;
+            this.groupControl1.Text = "groupControl1";
+            // 
+            // listView1
+            // 
+            this.listView1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.listView1.FullRowSelect = true;
+            this.listView1.GridLines = true;
+            this.listView1.HideSelection = false;
+            this.listView1.Location = new System.Drawing.Point(-2, 524);
+            this.listView1.Name = "listView1";
+            this.listView1.Size = new System.Drawing.Size(298, 227);
+            this.listView1.TabIndex = 6;
+            this.listView1.UseCompatibleStateImageBehavior = false;
+            // 
+            // treeList1
+            // 
+            this.treeList1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.treeList1.Location = new System.Drawing.Point(-2, 34);
+            this.treeList1.MenuManager = this.ribbonControl1;
+            this.treeList1.Name = "treeList1";
+            this.treeList1.Size = new System.Drawing.Size(298, 492);
+            this.treeList1.TabIndex = 5;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1312, 973);
-            this.Controls.Add(this.spreadsheetControl1);
+            this.ClientSize = new System.Drawing.Size(1460, 978);
+            this.Controls.Add(this.panelControl1);
             this.Controls.Add(this.ribbonControl1);
             this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "Form1";
@@ -472,6 +529,11 @@ namespace MSATServer
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
+            this.panelControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
+            this.groupControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.treeList1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -516,6 +578,10 @@ namespace MSATServer
         private DevExpress.XtraBars.BarEditItem barEditItem1;
         private DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit repositoryItemMemoEdit1;
         private DevExpress.XtraBars.BarButtonItem 查询;
+        private DevExpress.XtraEditors.PanelControl panelControl1;
+        private DevExpress.XtraEditors.GroupControl groupControl1;
+        private System.Windows.Forms.ListView listView1;
+        private DevExpress.XtraTreeList.TreeList treeList1;
         private DevExpress.XtraSpreadsheet.SpreadsheetControl spreadsheetControl1;
     }
 }
