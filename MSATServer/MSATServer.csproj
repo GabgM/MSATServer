@@ -99,6 +99,10 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <None Include="App.config" />
+    <None Include="Properties\DataSources\MSATServer.datasource" />
+    <None Include="Properties\DataSources\MSATServer.Properties.Resources.datasource" />
+    <None Include="Properties\DataSources\MSATServer.Properties.Settings.datasource" />
+    <None Include="Properties\DataSources\Program.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

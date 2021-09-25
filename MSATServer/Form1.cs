@@ -9,9 +9,9 @@ using System.Windows.Forms;
 
 namespace MSATServer
 {
-    public partial class Form1 : DevExpress.XtraEditors.XtraForm
+    public partial class MSATServer : DevExpress.XtraEditors.XtraForm
     {
-        public Form1()
+        public MSATServer()
         {
             InitializeComponent();
         }
