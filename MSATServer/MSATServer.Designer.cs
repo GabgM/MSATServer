@@ -44,6 +44,8 @@ namespace MSATServer
             this.xp_cmdshell = new DevExpress.XtraTab.XtraTabControl();
             this.sqlserver = new DevExpress.XtraTab.XtraTabPage();
             this.sqlServerPanel = new DevExpress.XtraEditors.PanelControl();
+            this.sign = new System.Windows.Forms.Button();
+            this.refresh = new System.Windows.Forms.Button();
             this.sqlInfo = new System.Windows.Forms.TextBox();
             this.sqlSearch = new System.Windows.Forms.Button();
             this.sqlCommand = new System.Windows.Forms.TextBox();
@@ -53,8 +55,6 @@ namespace MSATServer
             this.cmd = new DevExpress.XtraTab.XtraTabPage();
             this.getsendFile = new DevExpress.XtraTab.XtraTabPage();
             this.xtraTabPage5 = new DevExpress.XtraTab.XtraTabPage();
-            this.refresh = new System.Windows.Forms.Button();
-            this.sign = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xp_cmdshell)).BeginInit();
             this.xp_cmdshell.SuspendLayout();
@@ -79,7 +79,7 @@ namespace MSATServer
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage1});
-            this.ribbonControl1.Size = new System.Drawing.Size(1487, 225);
+            this.ribbonControl1.Size = new System.Drawing.Size(1372, 225);
             // 
             // skinDropDownButtonItem1
             // 
@@ -143,7 +143,7 @@ namespace MSATServer
             this.xp_cmdshell.Location = new System.Drawing.Point(0, 225);
             this.xp_cmdshell.Name = "xp_cmdshell";
             this.xp_cmdshell.SelectedTabPage = this.sqlserver;
-            this.xp_cmdshell.Size = new System.Drawing.Size(1487, 730);
+            this.xp_cmdshell.Size = new System.Drawing.Size(1372, 659);
             this.xp_cmdshell.TabIndex = 1;
             this.xp_cmdshell.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.sqlserver,
@@ -157,7 +157,7 @@ namespace MSATServer
             this.sqlserver.Controls.Add(this.sqlServerPanel);
             this.sqlserver.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("sqlserver.ImageOptions.SvgImage")));
             this.sqlserver.Name = "sqlserver";
-            this.sqlserver.Size = new System.Drawing.Size(1485, 666);
+            this.sqlserver.Size = new System.Drawing.Size(1370, 595);
             this.sqlserver.Text = "SQL";
             // 
             // sqlServerPanel
@@ -172,24 +172,44 @@ namespace MSATServer
             this.sqlServerPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.sqlServerPanel.Location = new System.Drawing.Point(0, 0);
             this.sqlServerPanel.Name = "sqlServerPanel";
-            this.sqlServerPanel.Size = new System.Drawing.Size(1485, 666);
+            this.sqlServerPanel.Size = new System.Drawing.Size(2055, 893);
             this.sqlServerPanel.TabIndex = 0;
+            // 
+            // sign
+            // 
+            this.sign.Location = new System.Drawing.Point(420, 14);
+            this.sign.Name = "sign";
+            this.sign.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.sign.Size = new System.Drawing.Size(84, 42);
+            this.sign.TabIndex = 7;
+            this.sign.Text = "登陆";
+            this.sign.UseVisualStyleBackColor = true;
+            this.sign.Click += new System.EventHandler(this.sign_Click);
+            // 
+            // refresh
+            // 
+            this.refresh.Location = new System.Drawing.Point(420, 73);
+            this.refresh.Name = "refresh";
+            this.refresh.Size = new System.Drawing.Size(84, 42);
+            this.refresh.TabIndex = 6;
+            this.refresh.Text = "刷新";
+            this.refresh.UseVisualStyleBackColor = true;
             // 
             // sqlInfo
             // 
-            this.sqlInfo.Location = new System.Drawing.Point(5, 3);
+            this.sqlInfo.Location = new System.Drawing.Point(5, 5);
             this.sqlInfo.Multiline = true;
             this.sqlInfo.Name = "sqlInfo";
             this.sqlInfo.ReadOnly = true;
-            this.sqlInfo.Size = new System.Drawing.Size(804, 124);
+            this.sqlInfo.Size = new System.Drawing.Size(512, 124);
             this.sqlInfo.TabIndex = 5;
             // 
             // sqlSearch
             // 
             this.sqlSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.sqlSearch.Location = new System.Drawing.Point(1361, 3);
+            this.sqlSearch.Location = new System.Drawing.Point(1906, 5);
             this.sqlSearch.Name = "sqlSearch";
-            this.sqlSearch.Size = new System.Drawing.Size(113, 122);
+            this.sqlSearch.Size = new System.Drawing.Size(138, 124);
             this.sqlSearch.TabIndex = 4;
             this.sqlSearch.Text = "查询";
             this.sqlSearch.UseVisualStyleBackColor = true;
@@ -198,20 +218,20 @@ namespace MSATServer
             // 
             this.sqlCommand.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.sqlCommand.Location = new System.Drawing.Point(815, 3);
+            this.sqlCommand.Location = new System.Drawing.Point(523, 5);
             this.sqlCommand.Multiline = true;
             this.sqlCommand.Name = "sqlCommand";
-            this.sqlCommand.Size = new System.Drawing.Size(540, 122);
+            this.sqlCommand.Size = new System.Drawing.Size(1377, 124);
             this.sqlCommand.TabIndex = 3;
             // 
             // sqlTreeList
             // 
             this.sqlTreeList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.sqlTreeList.Location = new System.Drawing.Point(-1, 133);
+            this.sqlTreeList.Location = new System.Drawing.Point(-1, 135);
             this.sqlTreeList.MenuManager = this.ribbonControl1;
             this.sqlTreeList.Name = "sqlTreeList";
-            this.sqlTreeList.Size = new System.Drawing.Size(380, 534);
+            this.sqlTreeList.Size = new System.Drawing.Size(281, 759);
             this.sqlTreeList.TabIndex = 2;
             // 
             // sqlResultShow
@@ -219,11 +239,11 @@ namespace MSATServer
             this.sqlResultShow.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.sqlResultShow.Location = new System.Drawing.Point(373, 133);
+            this.sqlResultShow.Location = new System.Drawing.Point(281, 133);
             this.sqlResultShow.MenuManager = this.ribbonControl1;
             this.sqlResultShow.Name = "sqlResultShow";
             this.sqlResultShow.ReadOnly = true;
-            this.sqlResultShow.Size = new System.Drawing.Size(1113, 534);
+            this.sqlResultShow.Size = new System.Drawing.Size(1774, 761);
             this.sqlResultShow.TabIndex = 1;
             this.sqlResultShow.Text = "spreadsheetControl1";
             // 
@@ -231,56 +251,39 @@ namespace MSATServer
             // 
             this.xtraTabPage2.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("xtraTabPage2.ImageOptions.SvgImage")));
             this.xtraTabPage2.Name = "xtraTabPage2";
-            this.xtraTabPage2.Size = new System.Drawing.Size(2016, 994);
+            this.xtraTabPage2.Size = new System.Drawing.Size(1370, 595);
             this.xtraTabPage2.Text = "Xp_cmdshell";
             // 
             // cmd
             // 
             this.cmd.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("cmd.ImageOptions.SvgImage")));
             this.cmd.Name = "cmd";
-            this.cmd.Size = new System.Drawing.Size(2016, 994);
+            this.cmd.Size = new System.Drawing.Size(1370, 595);
             this.cmd.Text = "Cmd";
             // 
             // getsendFile
             // 
             this.getsendFile.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("getsendFile.ImageOptions.SvgImage")));
             this.getsendFile.Name = "getsendFile";
-            this.getsendFile.Size = new System.Drawing.Size(2016, 994);
+            this.getsendFile.Size = new System.Drawing.Size(1370, 595);
             this.getsendFile.Text = "文件传输";
             // 
             // xtraTabPage5
             // 
             this.xtraTabPage5.Name = "xtraTabPage5";
-            this.xtraTabPage5.Size = new System.Drawing.Size(2016, 994);
+            this.xtraTabPage5.Size = new System.Drawing.Size(1370, 595);
             this.xtraTabPage5.Text = "xtraTabPage5";
-            // 
-            // refresh
-            // 
-            this.refresh.Location = new System.Drawing.Point(712, 78);
-            this.refresh.Name = "refresh";
-            this.refresh.Size = new System.Drawing.Size(84, 42);
-            this.refresh.TabIndex = 6;
-            this.refresh.Text = "刷新";
-            this.refresh.UseVisualStyleBackColor = true;
-            // 
-            // sign
-            // 
-            this.sign.Location = new System.Drawing.Point(712, 17);
-            this.sign.Name = "sign";
-            this.sign.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.sign.Size = new System.Drawing.Size(84, 42);
-            this.sign.TabIndex = 7;
-            this.sign.Text = "登陆";
-            this.sign.UseVisualStyleBackColor = true;
             // 
             // MSATServer
             // 
-            this.ClientSize = new System.Drawing.Size(1487, 955);
+            this.ClientSize = new System.Drawing.Size(1372, 884);
             this.Controls.Add(this.xp_cmdshell);
             this.Controls.Add(this.ribbonControl1);
             this.HtmlText = "MSATServer";
             this.IconOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("MSATServer.IconOptions.SvgImage")));
             this.Name = "MSATServer";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Load += new System.EventHandler(this.MSATServer_Load);
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xp_cmdshell)).EndInit();
             this.xp_cmdshell.ResumeLayout(false);
