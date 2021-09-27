@@ -19,6 +19,22 @@ namespace MSATServer
 
         public static Sign sign = null;
 
+        public String GetsqlIP() {
+            return sqlIP.Text;
+        }
+
+        public String GetsqlUserName() {
+            return sqlUserName.Text;
+        }
+
+        public String GetsqlPWD() {
+            return sqlPWD.Text;
+        }
+
+        public String GetsqlName() {
+            return sqlName.Text;
+        }
+
         private void Sign_Load(object sender, EventArgs e)
         {
 
@@ -47,7 +63,13 @@ namespace MSATServer
         private void backOut_Click(object sender, EventArgs e)
         {
             //System.Environment.Exit(0);   //大退，你懂的
-            this.Close();
+            //this.Close();
+            this.Hide();
+        }
+
+        private void loginButton_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

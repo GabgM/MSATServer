@@ -88,6 +88,7 @@ namespace MSATServer
             this.loginButton.TabIndex = 4;
             this.loginButton.Text = "登陆";
             this.loginButton.UseVisualStyleBackColor = true;
+            this.loginButton.Click += new System.EventHandler(this.loginButton_Click);
             // 
             // backOut
             // 
@@ -158,7 +159,8 @@ namespace MSATServer
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.backOut;
-            this.ClientSize = new System.Drawing.Size(445, 414);
+            this.ClientSize = new System.Drawing.Size(456, 472);
+            this.ControlBox = false;
             this.Controls.Add(this.label5);
             this.Controls.Add(this.sqlPWD);
             this.Controls.Add(this.sqlName);

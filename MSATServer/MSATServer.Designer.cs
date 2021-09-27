@@ -194,6 +194,7 @@ namespace MSATServer
             this.refresh.TabIndex = 6;
             this.refresh.Text = "刷新";
             this.refresh.UseVisualStyleBackColor = true;
+            this.refresh.Click += new System.EventHandler(this.refresh_Click);
             // 
             // sqlInfo
             // 
@@ -221,7 +222,7 @@ namespace MSATServer
             this.sqlCommand.Location = new System.Drawing.Point(523, 5);
             this.sqlCommand.Multiline = true;
             this.sqlCommand.Name = "sqlCommand";
-            this.sqlCommand.Size = new System.Drawing.Size(1377, 124);
+            this.sqlCommand.Size = new System.Drawing.Size(1376, 124);
             this.sqlCommand.TabIndex = 3;
             // 
             // sqlTreeList
