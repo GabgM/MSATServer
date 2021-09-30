@@ -78,6 +78,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Listening.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Listening.Designer.cs">
+      <DependentUpon>Listening.cs</DependentUpon>
+    </Compile>
     <Compile Include="Loading.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -98,6 +104,9 @@
     <Compile Include="Sign.Designer.cs">
       <DependentUpon>Sign.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Listening.resx">
+      <DependentUpon>Listening.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Loading.resx">
       <DependentUpon>Loading.cs</DependentUpon>
     </EmbeddedResource>

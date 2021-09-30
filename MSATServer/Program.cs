@@ -21,6 +21,7 @@ namespace MSATServer
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new Sign());
+            //Application.Run(new Loading());
             Application.Run(new MSATServer());
         }
     }

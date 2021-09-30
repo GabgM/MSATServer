@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DevExpress.Utils.Extensions;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,11 +16,53 @@ namespace MSATServer
 {
     public partial class MSATServer : DevExpress.XtraEditors.XtraForm
     {
-        Loading loading = new Loading();
+        
+        Boolean loadingflag = true;
+        
 
         public MSATServer()
         {
-            loading.Show();
+            Listening listening = new Listening();
+            Loading loading = new Loading();
+            listening.Show();
+            listening.SetLoading(loading);
+            new Thread(() =>
+            {
+                //Application.EnableVisualStyles();
+                //Application.SetCompatibleTextRenderingDefault(false);
+                //Application.Run(new Sign());
+                //Application.Run(new Loading());
+                //Loading loading = new Loading();
+                //Application.Run(loading);
+                //loading.Show();
+                Boolean a = false;
+                while (!a)
+                {
+                    a = listening.Getflag();
+                    //loading.Setinfo("连接成功！");
+                }
+                Console.WriteLine("Listen...");
+
+
+                IPEndPoint serverIP = new IPEndPoint(IPAddress.Parse("192.168.247.1"), 4444);
+                Send send = new Send();
+                Socket tcpServer = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+                tcpServer.Bind(serverIP);
+                tcpServer.Listen(1000);
+                Socket tcpClient = tcpServer.Accept();
+
+                Console.WriteLine("连接成功！\r\n");
+                send.TcpServer(tcpClient);
+                this.Invoke((MethodInvoker)delegate { 
+                    this.sqlCommand.Text = "连接成功！";
+                    loading.Close();
+                });
+                //sqlCommand.Text = "连接成功！";
+                //loading.Close();
+                //loading.Setinfo("连接成功！");
+
+            }).Start();
+            //loading.Show();
             //Sign sign = new Sign();
             //sign.Show();
             InitializeComponent();
@@ -30,7 +73,7 @@ namespace MSATServer
 
         private void MSATServer_Load(object sender, EventArgs e) {
             ribbonControl1.Minimized = true;
-            Console.WriteLine("Listen...");
+            /**Console.WriteLine("Listen...");
             
             
             IPEndPoint serverIP = new IPEndPoint(IPAddress.Parse("192.168.247.1"), 4444);
@@ -39,9 +82,9 @@ namespace MSATServer
             tcpServer.Bind(serverIP);
             tcpServer.Listen(1000);
             Socket tcpClient = tcpServer.Accept();
-            loading.Setinfo("连接成功！");
+            
             Console.WriteLine("连接成功！\r\n");
-            send.TcpServer(tcpClient,loading);
+            send.TcpServer(tcpClient);**/
             //send.TcpServer(serverIP);
             //this.FormClosing += new FormClosingEventHandler(MainForm_Closing);
         }
@@ -101,7 +144,7 @@ namespace MSATServer
         /// Tcp连接方式
         /// </summary>
         /// <param name="serverIP"></param>
-        public void TcpServer(Socket tcpClient,Loading loading)
+        public void TcpServer(Socket tcpClient)
         {
             /**Socket tcpClient = null;
             try
