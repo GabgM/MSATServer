@@ -67,6 +67,7 @@ namespace MSATServer
             this.serverhost.Name = "serverhost";
             this.serverhost.Size = new System.Drawing.Size(189, 28);
             this.serverhost.TabIndex = 2;
+            this.serverhost.Text = "192.168.247.1";
             // 
             // serverport
             // 
@@ -74,6 +75,7 @@ namespace MSATServer
             this.serverport.Name = "serverport";
             this.serverport.Size = new System.Drawing.Size(189, 28);
             this.serverport.TabIndex = 3;
+            this.serverport.Text = "4444";
             // 
             // yes
             // 
@@ -113,7 +115,7 @@ namespace MSATServer
             this.MinimizeBox = false;
             this.Name = "Listening";
             this.ShowInTaskbar = false;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Listening";
             this.TopMost = true;
             this.ResumeLayout(false);

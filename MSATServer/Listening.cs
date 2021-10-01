@@ -39,12 +39,12 @@ namespace MSATServer
         }
 
         public String GetHost() {
-            return this.host.Text;
+            return this.serverhost.Text.ToString();
         }
 
-        public String GetPort()
+        public int GetPort()
         {
-            return this.port.Text;
+            return Convert.ToInt32(this.serverport.Text.ToString());
         }
 
         private void yes_Click(object sender, EventArgs e)

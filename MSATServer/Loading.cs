@@ -25,5 +25,10 @@ namespace MSATServer
         {
 
         }
+
+        private void Loading_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

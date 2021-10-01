@@ -18,12 +18,14 @@ namespace MSATServer
     {
         
         Boolean loadingflag = true;
-        
+        String serverHOST = "localhost";
+        int serverPORT = 4444;
+        Listening listening = new Listening();
+        Loading loading = new Loading();
 
         public MSATServer()
         {
-            Listening listening = new Listening();
-            Loading loading = new Loading();
+            
             listening.Show();
             listening.SetLoading(loading);
             new Thread(() =>
@@ -42,9 +44,10 @@ namespace MSATServer
                     //loading.Setinfo("连接成功！");
                 }
                 Console.WriteLine("Listen...");
-
-
-                IPEndPoint serverIP = new IPEndPoint(IPAddress.Parse("192.168.247.1"), 4444);
+                serverHOST = listening.GetHost();
+                serverPORT = listening.GetPort();
+                Console.WriteLine(serverHOST+":"+serverPORT);
+                IPEndPoint serverIP = new IPEndPoint(IPAddress.Parse(serverHOST), serverPORT);
                 Send send = new Send();
                 Socket tcpServer = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
                 tcpServer.Bind(serverIP);
@@ -99,8 +102,31 @@ namespace MSATServer
 
         }
 
+        private void MSATServer_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            DialogResult result;
+            Console.WriteLine("正在关闭程序!");
+            result = MessageBox.Show("确定退出吗？", "退出", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            if (result == DialogResult.OK)
+            {
+                Application.ExitThread();
+            }
+            else
+            {
+                e.Cancel = true;
+            }
+        }
+
         private void MainForm_Closing(object sender, CancelEventArgs e)
         {
+            FormCollection childCollection = Application.OpenForms;
+            for (int i = childCollection.Count; i-- > 0;)
+            {
+                if (childCollection[i].Name != "父窗口标题") childCollection[i].Close();
+            }
+            Console.WriteLine("正在关闭程序!");
+            listening.Close();
+            loading.Close();
             System.Environment.Exit(0);   //点击关闭按钮强制退出
         }
 

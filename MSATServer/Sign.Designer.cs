@@ -82,9 +82,9 @@ namespace MSATServer
             // 
             // loginButton
             // 
-            this.loginButton.Location = new System.Drawing.Point(63, 345);
+            this.loginButton.Location = new System.Drawing.Point(37, 345);
             this.loginButton.Name = "loginButton";
-            this.loginButton.Size = new System.Drawing.Size(122, 46);
+            this.loginButton.Size = new System.Drawing.Size(140, 69);
             this.loginButton.TabIndex = 4;
             this.loginButton.Text = "登陆";
             this.loginButton.UseVisualStyleBackColor = true;
@@ -93,9 +93,9 @@ namespace MSATServer
             // backOut
             // 
             this.backOut.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.backOut.Location = new System.Drawing.Point(277, 345);
+            this.backOut.Location = new System.Drawing.Point(252, 345);
             this.backOut.Name = "backOut";
-            this.backOut.Size = new System.Drawing.Size(122, 46);
+            this.backOut.Size = new System.Drawing.Size(135, 69);
             this.backOut.TabIndex = 5;
             this.backOut.Text = "退出";
             this.backOut.UseVisualStyleBackColor = true;
@@ -159,7 +159,7 @@ namespace MSATServer
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.backOut;
-            this.ClientSize = new System.Drawing.Size(456, 472);
+            this.ClientSize = new System.Drawing.Size(451, 484);
             this.ControlBox = false;
             this.Controls.Add(this.label5);
             this.Controls.Add(this.sqlPWD);
