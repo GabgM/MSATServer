@@ -45,37 +45,41 @@ namespace MSATServer
             // sqlIP
             // 
             this.sqlIP.AllowDrop = true;
+            this.sqlIP.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.sqlIP.Location = new System.Drawing.Point(146, 91);
             this.sqlIP.Name = "sqlIP";
-            this.sqlIP.Size = new System.Drawing.Size(232, 28);
+            this.sqlIP.Size = new System.Drawing.Size(232, 35);
             this.sqlIP.TabIndex = 0;
             this.sqlIP.Text = "localhost";
             // 
             // sqlUserName
             // 
             this.sqlUserName.AllowDrop = true;
+            this.sqlUserName.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.sqlUserName.Location = new System.Drawing.Point(148, 155);
             this.sqlUserName.Name = "sqlUserName";
-            this.sqlUserName.Size = new System.Drawing.Size(229, 28);
+            this.sqlUserName.Size = new System.Drawing.Size(229, 35);
             this.sqlUserName.TabIndex = 1;
             this.sqlUserName.Text = "sa";
             // 
             // sqlPWD
             // 
             this.sqlPWD.AllowDrop = true;
+            this.sqlPWD.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.sqlPWD.Location = new System.Drawing.Point(145, 214);
             this.sqlPWD.Name = "sqlPWD";
             this.sqlPWD.PasswordChar = '￥';
-            this.sqlPWD.Size = new System.Drawing.Size(232, 28);
+            this.sqlPWD.Size = new System.Drawing.Size(232, 35);
             this.sqlPWD.TabIndex = 2;
             // 
             // sqlName
             // 
             this.sqlName.AllowDrop = true;
             this.sqlName.AllowPromptAsInput = false;
+            this.sqlName.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.sqlName.Location = new System.Drawing.Point(145, 273);
             this.sqlName.Name = "sqlName";
-            this.sqlName.Size = new System.Drawing.Size(229, 28);
+            this.sqlName.Size = new System.Drawing.Size(229, 35);
             this.sqlName.TabIndex = 3;
             this.sqlName.Text = "master";
             this.sqlName.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.sqlPWD_MaskInputRejected);

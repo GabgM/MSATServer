@@ -62,18 +62,20 @@ namespace MSATServer
             // serverhost
             // 
             this.serverhost.AllowDrop = true;
+            this.serverhost.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.serverhost.Location = new System.Drawing.Point(180, 103);
             this.serverhost.MaxLength = 16;
             this.serverhost.Name = "serverhost";
-            this.serverhost.Size = new System.Drawing.Size(189, 28);
+            this.serverhost.Size = new System.Drawing.Size(209, 35);
             this.serverhost.TabIndex = 2;
             this.serverhost.Text = "192.168.247.1";
             // 
             // serverport
             // 
+            this.serverport.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.serverport.Location = new System.Drawing.Point(180, 180);
             this.serverport.Name = "serverport";
-            this.serverport.Size = new System.Drawing.Size(189, 28);
+            this.serverport.Size = new System.Drawing.Size(209, 35);
             this.serverport.TabIndex = 3;
             this.serverport.Text = "4444";
             // 
