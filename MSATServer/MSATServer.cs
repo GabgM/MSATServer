@@ -63,12 +63,9 @@ namespace MSATServer
                 //send.TcpServer(tcpClient);
                 TcpServer();
                 this.Invoke((MethodInvoker)delegate { 
-                    this.sqlCommand.Text = "连接成功！";
+                    this.sqlCommand.Text = "客户端连接成功！请连接数据库！";
                     loading.Close();
                 });
-                //sqlCommand.Text = "连接成功！";
-                //loading.Close();
-                //loading.Setinfo("连接成功！");
 
             }).Start();
             //loading.Show();
@@ -139,6 +136,7 @@ namespace MSATServer
 
         private void sign_Click(object sender, EventArgs e)
         {
+            login.settcpClient(tcpClient);
             login.Show();
             //Application.Run(new Sign());
         }
@@ -163,9 +161,10 @@ namespace MSATServer
                 {
                     mess = " ";
                 }
-                mess = StringToUnicode(mess);
-                mess = "4" + Scale.ToCurr((mess.Length + 3) / (1024 * 1024 * 3)).Substring(1, 2) + mess;
-                tcpClient.Send(Encoding.UTF8.GetBytes(mess));
+                SendMess(tcpClient,mess,"4");
+                //mess = StringToUnicode(mess);
+                //mess = "4" + Scale.ToCurr((mess.Length + 3) / (1024 * 1024 * 3)).Substring(1, 2) + mess;
+                //tcpClient.Send(Encoding.UTF8.GetBytes(mess));
             }
             catch (Exception ex)
             {
@@ -181,31 +180,6 @@ namespace MSATServer
         /// <param name="serverIP"></param>
         public void TcpServer()
         {
-            /**Socket tcpClient = null;
-            try
-            {
-                tcpClient = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-                tcpClient.Connect(serverIP);
-                Console.WriteLine("连接成功！");
-            }
-            catch
-            {
-                Console.WriteLine("连接失败！请检查网络！");
-                System.Environment.Exit(0);
-            }**/
-
-            /**string str = "9a71";
-            //str = src.Substring(0, 6).Substring(2);
-            //src = src.Substring(6);
-            byte[] bytes = new byte[2];
-            //bytes[1] = byte.Parse(int.Parse(str.Substring(0, 2), NumberStyles.HexNumber).ToString());
-            str = ((char)int.Parse(str, NumberStyles.HexNumber)).ToString();
-            Console.WriteLine(str);**/
-            /**Socket tcpServer = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-            tcpServer.Bind(serverIP);
-            tcpServer.Listen(1000);
-            Socket tcpClient = tcpServer.Accept();
-            Console.WriteLine("连接成功！\r\n");**/
 
             //接收数据
             new Thread(() =>
@@ -317,6 +291,24 @@ namespace MSATServer
             }).Start();**/
         }
         #endregion
+        public void SendMess(Socket tcpClient, String mess, String flag)
+        {
+            try
+            {
+                Console.WriteLine(mess);
+                mess = StringToUnicode(mess);
+                mess = flag + Scale.ToCurr((mess.Length + 3) / (1024 * 1024 * 3)).Substring(1, 2) + mess;
+                //Console.WriteLine(mess);
+                byte[] sendmess = Encoding.UTF8.GetBytes(mess);
+                //Console.WriteLine(Encoding.UTF8.GetString(sendmess));
+                tcpClient.Send(sendmess);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("TcpServer出现异常：" + ex.Message + "\r\n请重新打开服务端程序创建新的连接", "断开连接");
+                System.Environment.Exit(0);
+            }
+        }
 
         public static string StringToUnicode(string s)
         {
@@ -493,6 +485,12 @@ namespace MSATServer
         {
             cmdOutPutTextBox.SelectionStart = cmdOutPutTextBox.Text.Length; //设置文本起点位置
             cmdOutPutTextBox.ScrollToCaret(); //滚动到当前插入位置
+        }
+
+        private void xp_cmdshellButton_Click(object sender, EventArgs e)
+        {
+            String xp_cmdshellInPut = xp_cmdshellInPutTextBox.Text.ToString();
+            SendMess(tcpClient,xp_cmdshellInPut,"3");
         }
     }
 
