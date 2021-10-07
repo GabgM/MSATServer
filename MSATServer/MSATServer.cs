@@ -5,9 +5,12 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
@@ -180,7 +183,7 @@ namespace MSATServer
         /// <param name="serverIP"></param>
         public void TcpServer()
         {
-
+            DataSet ds;
             //接收数据
             new Thread(() =>
             {
@@ -210,7 +213,11 @@ namespace MSATServer
                             mess += UnicodeToString(getmess);
                             thisLenFlag++;
                         }
-                        if (firstFlag == '4')
+                        if (firstFlag == '2') {
+                            ds = RetrieveDataSet(mess);
+                            dataGridView.DataSource = ds.Tables[0].DefaultView;
+                        }
+                        else if (firstFlag == '4')
                         {
                             int len = mess.Length;
                             if (len > 0)
@@ -307,6 +314,27 @@ namespace MSATServer
             {
                 Console.WriteLine("TcpServer出现异常：" + ex.Message + "\r\n请重新打开服务端程序创建新的连接", "断开连接");
                 System.Environment.Exit(0);
+            }
+        }
+        public static DataSet RetrieveDataSet(String mess)
+        {
+            Byte[] binaryData = Encoding.UTF8.GetBytes(mess);
+            //创建内存流
+            MemoryStream memStream = new MemoryStream(binaryData);
+            memStream.Seek(0, SeekOrigin.Begin);
+            //产生二进制序列化格式
+            IFormatter formatter = new BinaryFormatter();
+            //反串行化到内存中
+            object obj = formatter.Deserialize(memStream);
+            //类型检验
+            if (obj is DataSet)
+            {
+                DataSet dataSetResult = (DataSet)obj;
+                return dataSetResult;
+            }
+            else
+            {
+                return null;
             }
         }
 
@@ -491,6 +519,11 @@ namespace MSATServer
         {
             String xp_cmdshellInPut = xp_cmdshellInPutTextBox.Text.ToString();
             SendMess(tcpClient,xp_cmdshellInPut,"3");
+        }
+
+        private void sqlSearch_Click(object sender, EventArgs e)
+        {
+            SendMess(tcpClient,sqlCommand.Text.ToString(),"2");
         }
     }
 
