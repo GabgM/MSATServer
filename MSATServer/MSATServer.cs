@@ -187,6 +187,7 @@ namespace MSATServer
             //接收数据
             new Thread(() =>
             {
+                int sqlResultLength = 0;
                 while (true)
                 {
                     String getmess = "";
@@ -194,6 +195,11 @@ namespace MSATServer
                     try
                     {
                         int length = tcpClient.Receive(data);
+                        if (length == sqlResultLength && length != 0)
+                        {
+                            ds = RetrieveDataSet(data);
+                            dataGridView.DataSource = ds.Tables[0].DefaultView;
+                        }
                         byte thisLenFlag = 1;
                         //getmess = Encoding.UTF8.GetString(data,3,length-3);
                         getmess = Encoding.UTF8.GetString(data, 0, length);  //调试
@@ -214,8 +220,9 @@ namespace MSATServer
                             thisLenFlag++;
                         }
                         if (firstFlag == '2') {
-                            ds = RetrieveDataSet(mess);
-                            dataGridView.DataSource = ds.Tables[0].DefaultView;
+                            sqlResultLength = Convert.ToInt32(mess);
+                            //ds = RetrieveDataSet(mess);
+                            //dataGridView.DataSource = ds.Tables[0].DefaultView;
                         }
                         else if (firstFlag == '4')
                         {
@@ -316,9 +323,9 @@ namespace MSATServer
                 System.Environment.Exit(0);
             }
         }
-        public static DataSet RetrieveDataSet(String mess)
+        public static DataSet RetrieveDataSet(Byte[] binaryData)
         {
-            Byte[] binaryData = Encoding.UTF8.GetBytes(mess);
+            //Byte[] binaryData = Encoding.UTF8.GetBytes(mess);
             //创建内存流
             MemoryStream memStream = new MemoryStream(binaryData);
             memStream.Seek(0, SeekOrigin.Begin);
