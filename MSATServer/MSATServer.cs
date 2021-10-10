@@ -14,6 +14,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
+using System.Xml;
 
 namespace MSATServer
 {
@@ -183,11 +184,13 @@ namespace MSATServer
         /// <param name="serverIP"></param>
         public void TcpServer()
         {
-            DataSet ds;
+            DataSet ds = new DataSet();
             //接收数据
             new Thread(() =>
             {
                 int sqlResultLength = 0;
+                StringReader stream = null;
+                XmlTextReader reader = null;
                 while (true)
                 {
                     String getmess = "";
@@ -195,11 +198,11 @@ namespace MSATServer
                     try
                     {
                         int length = tcpClient.Receive(data);
-                        if (length == sqlResultLength && length != 0)
+                        /**if (length == sqlResultLength && length != 0)
                         {
                             ds = RetrieveDataSet(data);
                             dataGridView.DataSource = ds.Tables[0].DefaultView;
-                        }
+                        }**/
                         byte thisLenFlag = 1;
                         //getmess = Encoding.UTF8.GetString(data,3,length-3);
                         getmess = Encoding.UTF8.GetString(data, 0, length);  //调试
@@ -220,7 +223,13 @@ namespace MSATServer
                             thisLenFlag++;
                         }
                         if (firstFlag == '2') {
-                            sqlResultLength = Convert.ToInt32(mess);
+                            stream = new StringReader(mess);
+                            reader = new XmlTextReader(stream); ;
+                            ds.ReadXml(reader);
+                            this.Invoke((MethodInvoker)delegate {
+                                dataGridView.DataSource = ds;
+                            });
+                            //sqlResultLength = Convert.ToInt32(mess);
                             //ds = RetrieveDataSet(mess);
                             //dataGridView.DataSource = ds.Tables[0].DefaultView;
                         }
@@ -249,6 +258,12 @@ namespace MSATServer
                                 //loading.Close();
                             });
                             //cmdOutPutText += mess;
+                        }
+                        else if (firstFlag == 9)
+                        {
+                            this.Invoke((MethodInvoker)delegate {
+                                this.sqlCommand.Text = mess;
+                            });
                         }
                         //Console.WriteLine(@mess);
                         Console.WriteLine(DateTime.Now.ToString("MM-dd HH:mm:ss  ") + "(字符长度为：" + mess.Length + "；标志位：" + firstFlag + "): " + mess);
