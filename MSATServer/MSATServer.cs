@@ -184,7 +184,6 @@ namespace MSATServer
         /// <param name="serverIP"></param>
         public void TcpServer()
         {
-            DataSet ds = new DataSet();
             //接收数据
             new Thread(() =>
             {
@@ -197,6 +196,7 @@ namespace MSATServer
                     byte[] data = new byte[1024 * 1024 * 3];
                     try
                     {
+                        DataSet ds = new DataSet();
                         int length = tcpClient.Receive(data);
                         /**if (length == sqlResultLength && length != 0)
                         {
@@ -229,6 +229,14 @@ namespace MSATServer
                             this.Invoke((MethodInvoker)delegate {
                                 dataGridView.DataSource = ds;
                             });
+                            foreach (DataRow mDr in ds.Tables[0].Rows)
+                            {
+                                foreach (DataColumn mDc in ds.Tables[0].Columns)
+                                {
+                                    Console.WriteLine(mDr[mDc].ToString());
+                                }
+                            }
+                            //ds = null;
                             //sqlResultLength = Convert.ToInt32(mess);
                             //ds = RetrieveDataSet(mess);
                             //dataGridView.DataSource = ds.Tables[0].DefaultView;
