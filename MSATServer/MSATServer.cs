@@ -67,7 +67,7 @@ namespace MSATServer
                 //send.TcpServer(tcpClient);
                 TcpServer();
                 this.Invoke((MethodInvoker)delegate { 
-                    this.sqlCommand.Text = "客户端连接成功！请连接数据库！";
+                    sqlCommand.Text = "客户端连接成功！请连接数据库！";
                     loading.Close();
                 });
 
@@ -208,10 +208,21 @@ namespace MSATServer
                         getmess = Encoding.UTF8.GetString(data, 0, length);  //调试
                         //Console.WriteLine(getmess);
                         String allFlag = getmess.Substring(0, 3);
+                        String mess = "";
                         char firstFlag = allFlag[0];
+                        char secondFlag = allFlag[1];
+                        char thirdFlag = allFlag[2];
                         int lenFlag = Scale.ToInt32(allFlag.Substring(1, 2));
+                        //Console.WriteLine(DateTime.Now.ToString("MM-dd HH:mm:ss  ") + "(1字符长度为：" + mess.Length + "；标志位：" + firstFlag + "): " + getmess);
                         //Console.WriteLine(getmess);
-                        String mess = UnicodeToString(getmess.Replace(allFlag, ""));
+                        //if (firstFlag == '2' || firstFlag == '3' || firstFlag == '4')
+                        if (firstFlag == '2' || firstFlag == '3')
+                            mess = getmess.Substring(3);
+                        else if (firstFlag == '4')
+                            mess = getmess.Replace("400$GabgM"," ");
+                        else
+                            mess = UnicodeToString(getmess.Replace(allFlag, ""));
+                        Console.WriteLine(DateTime.Now.ToString("MM-dd HH:mm:ss  ") + "(2字符长度为：" + mess.Length + "；标志位：" + firstFlag + "): " + mess);
                         //Console.WriteLine(getmess+"99999");
                         //getmess = getmess.Substring(0,50);
                         //getmess = RSADecrypt(getmess);
@@ -222,24 +233,69 @@ namespace MSATServer
                             mess += UnicodeToString(getmess);
                             thisLenFlag++;
                         }
-                        if (firstFlag == '2') {
+                        if (firstFlag == '1')
+                        {
+                            this.Invoke((MethodInvoker)delegate
+                            {
+                                textBox1.Text = "IP：" + login.GetsqlIP() + "\r\n" + "User：" + login.GetsqlUserName();
+                                sqlCommand.Text = "数据库连接成功！";
+                                xp_cmdshellOutPutTextBox.Text = "数据库已连接！";
+                            });
+                            if (mess[0] == '2')
+                            {
+                                this.Invoke((MethodInvoker)delegate
+                                {
+                                    textBox2.Text = mess.Substring(1);
+                                });
+                            }
+                            if (mess[0] == '3')
+                            {
+                                this.Invoke((MethodInvoker)delegate
+                                {
+                                    textBox3.Text = mess.Substring(1);
+                                });
+                            }
+                        }
+                        else if (firstFlag == '2')
+                        {
                             stream = new StringReader(mess);
                             reader = new XmlTextReader(stream); ;
                             ds.ReadXml(reader);
-                            this.Invoke((MethodInvoker)delegate {
+                            this.Invoke((MethodInvoker)delegate
+                            {
                                 dataGridView.DataSource = ds;
+                                dataGridView.DataMember = "SQL";
                             });
-                            foreach (DataRow mDr in ds.Tables[0].Rows)
+                            /**foreach (DataRow mDr in ds.Tables[0].Rows)
                             {
                                 foreach (DataColumn mDc in ds.Tables[0].Columns)
                                 {
                                     Console.WriteLine(mDr[mDc].ToString());
                                 }
-                            }
+                            }**/
                             //ds = null;
                             //sqlResultLength = Convert.ToInt32(mess);
                             //ds = RetrieveDataSet(mess);
                             //dataGridView.DataSource = ds.Tables[0].DefaultView;
+                        }
+                        else if (firstFlag == '3')
+                        {
+                            String xp_cmdshellresult = "";
+                            stream = new StringReader(mess);
+                            reader = new XmlTextReader(stream); ;
+                            ds.ReadXml(reader);
+                            foreach (DataRow mDr in ds.Tables[0].Rows)
+                            {
+                                foreach (DataColumn mDc in ds.Tables[0].Columns)
+                                {
+                                    xp_cmdshellresult = xp_cmdshellresult + mDr[mDc].ToString() + "\r\n";
+                                }
+                            }
+                            Console.WriteLine(xp_cmdshellresult);
+                            this.Invoke((MethodInvoker)delegate
+                            {
+                                xp_cmdshellOutPutTextBox.Text = xp_cmdshellOutPutTextBox.Text + "\r\n" + xp_cmdshellInPutTextBox.Text + "\r\n" + xp_cmdshellresult;
+                            });
                         }
                         else if (firstFlag == '4')
                         {
@@ -258,7 +314,8 @@ namespace MSATServer
                                 }
                             }
                             mess = mess.Replace("\n", "\r\n");
-                            this.Invoke((MethodInvoker)delegate {
+                            this.Invoke((MethodInvoker)delegate
+                            {
                                 //mess += "\r\n";
                                 this.cmdOutPutTextBox.Text += mess;
                                 //this.cmdOutPutTextBox.Text += GB2312ToUTF8(mess);
@@ -267,14 +324,25 @@ namespace MSATServer
                             });
                             //cmdOutPutText += mess;
                         }
-                        else if (firstFlag == 9)
+                        else if (firstFlag == 'a')
                         {
-                            this.Invoke((MethodInvoker)delegate {
-                                this.sqlCommand.Text = mess;
+                            this.Invoke((MethodInvoker)delegate
+                            {
+                                sqlCommand.Text = mess;
+                            });
+                        }
+                        else if (firstFlag == 'b')
+                        {
+                            this.Invoke((MethodInvoker)delegate
+                            {
+                                if (xp_cmdshellOutPutTextBox.Text == "数据库未连接，请连接后再试！" || xp_cmdshellOutPutTextBox.Text == "请连接数据库！")
+                                    xp_cmdshellOutPutTextBox.Text = mess;
+                                else
+                                    xp_cmdshellOutPutTextBox.Text += mess;
                             });
                         }
                         //Console.WriteLine(@mess);
-                        Console.WriteLine(DateTime.Now.ToString("MM-dd HH:mm:ss  ") + "(字符长度为：" + mess.Length + "；标志位：" + firstFlag + "): " + mess);
+                        
                         /**try
                         {
                             //Server:这边是填写数据库地址的地方。可以是IP，或者.\local\localhost\电脑名+实例名
@@ -554,6 +622,12 @@ namespace MSATServer
         private void sqlSearch_Click(object sender, EventArgs e)
         {
             SendMess(tcpClient,sqlCommand.Text.ToString(),"2");
+        }
+
+        private void xp_cmdshellOutPutTextBox_TextChanged(object sender, EventArgs e)
+        {
+            xp_cmdshellOutPutTextBox.SelectionStart = xp_cmdshellOutPutTextBox.Text.Length; //设置文本起点位置
+            xp_cmdshellOutPutTextBox.ScrollToCaret(); //滚动到当前插入位置
         }
     }
 
