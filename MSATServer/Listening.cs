@@ -60,5 +60,10 @@ namespace MSATServer
         {
             System.Environment.Exit(0);
         }
+
+        private void Listening_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

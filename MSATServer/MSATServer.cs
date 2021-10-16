@@ -1,4 +1,6 @@
 ﻿using DevExpress.Utils.Extensions;
+using DevExpress.XtraTreeList.Nodes;
+//using MSATServer;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -265,6 +267,31 @@ namespace MSATServer
                             {
                                 dataGridView.DataSource = ds;
                                 dataGridView.DataMember = "SQL";
+                                //sqlTreeList.DataSource = ds;
+                                //sqlTreeList.KeyFieldName = "dbid";
+                                //sqlTreeList.ParentFieldName = "name";
+                                DataTable dt = ds.Tables[0];
+                                TreeNode tn1 = new TreeNode("TEST1");
+                                TreeNode tn2 = new TreeNode("TEST2");
+                                TreeNode tn3 = new TreeNode("TEST3");
+                                //tn1.Nodes.Add(tn1);
+                                tn1.Nodes.Add(tn2);
+                                tn2.Nodes.Add(tn3);
+                                tn2 = new TreeNode("SSSSSSSSSSS");
+                                tn1.Nodes.Add(tn2);
+                                sqlTreeView.Nodes.Add(tn1);
+                                //sqlTreeView.Nodes.Add(tn1);
+                                /**if (dt.Rows.Count > 0)
+                                {
+                                    foreach (DataRow dr in dt.Rows)
+                                    {
+                                        TreeNode tnn = new TreeNode(dr["name"].ToString());
+                                        tnn.Tag = dr["dbid"].ToString();
+                                        treeView1.Nodes.Add(tnn);
+                                        Console.WriteLine("正在加载TreeView：" + dr["name"].ToString());
+                                    }
+                                    //TreeListNode node = sqlTreeView.Nodes.Add(new TreeNode("name"));
+                                }**/
                             });
                             /**foreach (DataRow mDr in ds.Tables[0].Rows)
                             {

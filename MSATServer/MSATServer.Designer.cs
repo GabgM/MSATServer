@@ -1,4 +1,7 @@
 ﻿
+using System.Drawing;
+using System.Windows.Forms;
+
 namespace MSATServer
 {
     partial class MSATServer
@@ -31,7 +34,8 @@ namespace MSATServer
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MSATServer));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.ribbonControl1 = new DevExpress.XtraBars.Ribbon.RibbonControl();
             this.skinDropDownButtonItem1 = new DevExpress.XtraBars.SkinDropDownButtonItem();
             this.skinPaletteDropDownButtonItem1 = new DevExpress.XtraBars.SkinPaletteDropDownButtonItem();
@@ -45,16 +49,16 @@ namespace MSATServer
             this.xp_cmdshell = new DevExpress.XtraTab.XtraTabControl();
             this.sqlserver = new DevExpress.XtraTab.XtraTabPage();
             this.sqlServerPanel = new DevExpress.XtraEditors.PanelControl();
+            this.sqlTreeView = new System.Windows.Forms.TreeView();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.dataGridView = new System.Windows.Forms.DataGridView();
+            this.dataGridView = new DataGridViewEx();
             this.sign = new System.Windows.Forms.Button();
             this.refresh = new System.Windows.Forms.Button();
             this.sqlInfo = new System.Windows.Forms.TextBox();
             this.sqlSearch = new System.Windows.Forms.Button();
             this.sqlCommand = new System.Windows.Forms.TextBox();
-            this.sqlTreeList = new DevExpress.XtraTreeList.TreeList();
             this.xtraTabPage2 = new DevExpress.XtraTab.XtraTabPage();
             this.xp_cmdshellpanelControl = new DevExpress.XtraEditors.PanelControl();
             this.xp_cmdshellButton = new System.Windows.Forms.Button();
@@ -67,7 +71,7 @@ namespace MSATServer
             this.cmdOutPutTextBox = new System.Windows.Forms.TextBox();
             this.getsendFile = new DevExpress.XtraTab.XtraTabPage();
             this.xtraTabPage5 = new DevExpress.XtraTab.XtraTabPage();
-            this.dataGridViewTest = new System.Windows.Forms.DataGridView();
+            this.treeView1 = new System.Windows.Forms.TreeView();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xp_cmdshell)).BeginInit();
             this.xp_cmdshell.SuspendLayout();
@@ -75,7 +79,6 @@ namespace MSATServer
             ((System.ComponentModel.ISupportInitialize)(this.sqlServerPanel)).BeginInit();
             this.sqlServerPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.sqlTreeList)).BeginInit();
             this.xtraTabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.xp_cmdshellpanelControl)).BeginInit();
             this.xp_cmdshellpanelControl.SuspendLayout();
@@ -83,7 +86,6 @@ namespace MSATServer
             ((System.ComponentModel.ISupportInitialize)(this.cmdpanelControl)).BeginInit();
             this.cmdpanelControl.SuspendLayout();
             this.xtraTabPage5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTest)).BeginInit();
             this.SuspendLayout();
             // 
             // ribbonControl1
@@ -102,7 +104,7 @@ namespace MSATServer
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage1});
-            this.ribbonControl1.Size = new System.Drawing.Size(1836, 225);
+            this.ribbonControl1.Size = new System.Drawing.Size(1988, 225);
             // 
             // skinDropDownButtonItem1
             // 
@@ -167,7 +169,7 @@ namespace MSATServer
             this.xp_cmdshell.Margin = new System.Windows.Forms.Padding(32);
             this.xp_cmdshell.Name = "xp_cmdshell";
             this.xp_cmdshell.SelectedTabPage = this.sqlserver;
-            this.xp_cmdshell.Size = new System.Drawing.Size(1836, 1059);
+            this.xp_cmdshell.Size = new System.Drawing.Size(1988, 1102);
             this.xp_cmdshell.TabIndex = 1;
             this.xp_cmdshell.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.sqlserver,
@@ -182,11 +184,12 @@ namespace MSATServer
             this.sqlserver.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("sqlserver.ImageOptions.SvgImage")));
             this.sqlserver.Margin = new System.Windows.Forms.Padding(32);
             this.sqlserver.Name = "sqlserver";
-            this.sqlserver.Size = new System.Drawing.Size(1834, 995);
+            this.sqlserver.Size = new System.Drawing.Size(1986, 1038);
             this.sqlserver.Text = "SQL";
             // 
             // sqlServerPanel
             // 
+            this.sqlServerPanel.Controls.Add(this.sqlTreeView);
             this.sqlServerPanel.Controls.Add(this.textBox3);
             this.sqlServerPanel.Controls.Add(this.textBox2);
             this.sqlServerPanel.Controls.Add(this.textBox1);
@@ -196,13 +199,21 @@ namespace MSATServer
             this.sqlServerPanel.Controls.Add(this.sqlInfo);
             this.sqlServerPanel.Controls.Add(this.sqlSearch);
             this.sqlServerPanel.Controls.Add(this.sqlCommand);
-            this.sqlServerPanel.Controls.Add(this.sqlTreeList);
             this.sqlServerPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.sqlServerPanel.Location = new System.Drawing.Point(0, 0);
             this.sqlServerPanel.Margin = new System.Windows.Forms.Padding(32);
             this.sqlServerPanel.Name = "sqlServerPanel";
-            this.sqlServerPanel.Size = new System.Drawing.Size(1834, 995);
+            this.sqlServerPanel.Size = new System.Drawing.Size(2979, 1557);
             this.sqlServerPanel.TabIndex = 0;
+            // 
+            // sqlTreeView
+            // 
+            this.sqlTreeView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.sqlTreeView.Location = new System.Drawing.Point(5, 115);
+            this.sqlTreeView.Name = "sqlTreeView";
+            this.sqlTreeView.Size = new System.Drawing.Size(316, 1437);
+            this.sqlTreeView.TabIndex = 12;
             // 
             // textBox3
             // 
@@ -236,18 +247,22 @@ namespace MSATServer
             // 
             this.dataGridView.AllowUserToAddRows = false;
             this.dataGridView.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("宋体", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.dataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.dataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dataGridView.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders;
             this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView.Location = new System.Drawing.Point(330, 109);
             this.dataGridView.Name = "dataGridView";
             this.dataGridView.ReadOnly = true;
-            this.dataGridView.RowHeadersWidth = 62;
+            this.dataGridView.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.dataGridView.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView.RowTemplate.Height = 30;
-            this.dataGridView.Size = new System.Drawing.Size(1499, 881);
+            this.dataGridView.Size = new System.Drawing.Size(2644, 1443);
             this.dataGridView.TabIndex = 8;
             // 
             // sign
@@ -286,7 +301,7 @@ namespace MSATServer
             // sqlSearch
             // 
             this.sqlSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.sqlSearch.Location = new System.Drawing.Point(1691, 10);
+            this.sqlSearch.Location = new System.Drawing.Point(2836, 10);
             this.sqlSearch.Margin = new System.Windows.Forms.Padding(32);
             this.sqlSearch.Name = "sqlSearch";
             this.sqlSearch.Size = new System.Drawing.Size(122, 92);
@@ -304,23 +319,8 @@ namespace MSATServer
             this.sqlCommand.Margin = new System.Windows.Forms.Padding(32);
             this.sqlCommand.Multiline = true;
             this.sqlCommand.Name = "sqlCommand";
-            this.sqlCommand.Size = new System.Drawing.Size(760, 103);
+            this.sqlCommand.Size = new System.Drawing.Size(1905, 103);
             this.sqlCommand.TabIndex = 3;
-            // 
-            // sqlTreeList
-            // 
-            this.sqlTreeList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.sqlTreeList.FixedLineWidth = 12;
-            this.sqlTreeList.HorzScrollStep = 28;
-            this.sqlTreeList.Location = new System.Drawing.Point(5, 109);
-            this.sqlTreeList.Margin = new System.Windows.Forms.Padding(32);
-            this.sqlTreeList.MenuManager = this.ribbonControl1;
-            this.sqlTreeList.MinWidth = 225;
-            this.sqlTreeList.Name = "sqlTreeList";
-            this.sqlTreeList.Size = new System.Drawing.Size(316, 881);
-            this.sqlTreeList.TabIndex = 2;
-            this.sqlTreeList.TreeLevelWidth = 100;
             // 
             // xtraTabPage2
             // 
@@ -328,7 +328,7 @@ namespace MSATServer
             this.xtraTabPage2.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("xtraTabPage2.ImageOptions.SvgImage")));
             this.xtraTabPage2.Margin = new System.Windows.Forms.Padding(32);
             this.xtraTabPage2.Name = "xtraTabPage2";
-            this.xtraTabPage2.Size = new System.Drawing.Size(1834, 995);
+            this.xtraTabPage2.Size = new System.Drawing.Size(1986, 1038);
             this.xtraTabPage2.Text = "Xp_cmdshell";
             // 
             // xp_cmdshellpanelControl
@@ -341,16 +341,16 @@ namespace MSATServer
             this.xp_cmdshellpanelControl.Controls.Add(this.xp_cmdshellInPutTextBox);
             this.xp_cmdshellpanelControl.Location = new System.Drawing.Point(0, 5);
             this.xp_cmdshellpanelControl.Name = "xp_cmdshellpanelControl";
-            this.xp_cmdshellpanelControl.Size = new System.Drawing.Size(2635, 1436);
+            this.xp_cmdshellpanelControl.Size = new System.Drawing.Size(2787, 1479);
             this.xp_cmdshellpanelControl.TabIndex = 0;
             // 
             // xp_cmdshellButton
             // 
             this.xp_cmdshellButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.xp_cmdshellButton.Location = new System.Drawing.Point(1684, 852);
+            this.xp_cmdshellButton.Location = new System.Drawing.Point(1684, 895);
             this.xp_cmdshellButton.Name = "xp_cmdshellButton";
-            this.xp_cmdshellButton.Size = new System.Drawing.Size(139, 127);
+            this.xp_cmdshellButton.Size = new System.Drawing.Size(291, 127);
             this.xp_cmdshellButton.TabIndex = 2;
             this.xp_cmdshellButton.Text = "执行";
             this.xp_cmdshellButton.UseVisualStyleBackColor = true;
@@ -366,7 +366,7 @@ namespace MSATServer
             this.xp_cmdshellOutPutTextBox.Name = "xp_cmdshellOutPutTextBox";
             this.xp_cmdshellOutPutTextBox.ReadOnly = true;
             this.xp_cmdshellOutPutTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.xp_cmdshellOutPutTextBox.Size = new System.Drawing.Size(1826, 841);
+            this.xp_cmdshellOutPutTextBox.Size = new System.Drawing.Size(1978, 884);
             this.xp_cmdshellOutPutTextBox.TabIndex = 0;
             this.xp_cmdshellOutPutTextBox.Text = "请连接数据库！";
             this.xp_cmdshellOutPutTextBox.TextChanged += new System.EventHandler(this.xp_cmdshellOutPutTextBox_TextChanged);
@@ -377,10 +377,10 @@ namespace MSATServer
             this.xp_cmdshellInPutTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.xp_cmdshellInPutTextBox.Font = new System.Drawing.Font("Tahoma", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.xp_cmdshellInPutTextBox.Location = new System.Drawing.Point(5, 852);
+            this.xp_cmdshellInPutTextBox.Location = new System.Drawing.Point(5, 895);
             this.xp_cmdshellInPutTextBox.Multiline = true;
             this.xp_cmdshellInPutTextBox.Name = "xp_cmdshellInPutTextBox";
-            this.xp_cmdshellInPutTextBox.Size = new System.Drawing.Size(1657, 127);
+            this.xp_cmdshellInPutTextBox.Size = new System.Drawing.Size(1809, 127);
             this.xp_cmdshellInPutTextBox.TabIndex = 1;
             this.xp_cmdshellInPutTextBox.Text = "输入命令点击执行即可";
             // 
@@ -390,7 +390,7 @@ namespace MSATServer
             this.cmd.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("cmd.ImageOptions.SvgImage")));
             this.cmd.Margin = new System.Windows.Forms.Padding(32);
             this.cmd.Name = "cmd";
-            this.cmd.Size = new System.Drawing.Size(1834, 995);
+            this.cmd.Size = new System.Drawing.Size(1986, 1038);
             this.cmd.Text = "Cmd";
             // 
             // cmdpanelControl
@@ -404,13 +404,13 @@ namespace MSATServer
             this.cmdpanelControl.Location = new System.Drawing.Point(0, 1);
             this.cmdpanelControl.Margin = new System.Windows.Forms.Padding(32);
             this.cmdpanelControl.Name = "cmdpanelControl";
-            this.cmdpanelControl.Size = new System.Drawing.Size(3854, 2045);
+            this.cmdpanelControl.Size = new System.Drawing.Size(4006, 2088);
             this.cmdpanelControl.TabIndex = 0;
             // 
             // cmdButton
             // 
             this.cmdButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.cmdButton.Location = new System.Drawing.Point(1682, 877);
+            this.cmdButton.Location = new System.Drawing.Point(1834, 920);
             this.cmdButton.Margin = new System.Windows.Forms.Padding(21);
             this.cmdButton.Name = "cmdButton";
             this.cmdButton.Size = new System.Drawing.Size(123, 70);
@@ -425,11 +425,11 @@ namespace MSATServer
             this.cmdInPutTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.cmdInPutTextBox.Font = new System.Drawing.Font("Tahoma", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmdInPutTextBox.Location = new System.Drawing.Point(10, 848);
+            this.cmdInPutTextBox.Location = new System.Drawing.Point(10, 891);
             this.cmdInPutTextBox.Margin = new System.Windows.Forms.Padding(21);
             this.cmdInPutTextBox.Multiline = true;
             this.cmdInPutTextBox.Name = "cmdInPutTextBox";
-            this.cmdInPutTextBox.Size = new System.Drawing.Size(1643, 139);
+            this.cmdInPutTextBox.Size = new System.Drawing.Size(1795, 139);
             this.cmdInPutTextBox.TabIndex = 1;
             this.cmdInPutTextBox.Text = "输入命令";
             // 
@@ -446,7 +446,7 @@ namespace MSATServer
             this.cmdOutPutTextBox.Name = "cmdOutPutTextBox";
             this.cmdOutPutTextBox.ReadOnly = true;
             this.cmdOutPutTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.cmdOutPutTextBox.Size = new System.Drawing.Size(1815, 826);
+            this.cmdOutPutTextBox.Size = new System.Drawing.Size(1967, 869);
             this.cmdOutPutTextBox.TabIndex = 0;
             this.cmdOutPutTextBox.TextChanged += new System.EventHandler(this.cmdOutPutTextBox_TextChanged);
             // 
@@ -455,30 +455,27 @@ namespace MSATServer
             this.getsendFile.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("getsendFile.ImageOptions.SvgImage")));
             this.getsendFile.Margin = new System.Windows.Forms.Padding(32);
             this.getsendFile.Name = "getsendFile";
-            this.getsendFile.Size = new System.Drawing.Size(1601, 887);
+            this.getsendFile.Size = new System.Drawing.Size(1986, 1038);
             this.getsendFile.Text = "文件传输";
             // 
             // xtraTabPage5
             // 
-            this.xtraTabPage5.Controls.Add(this.dataGridViewTest);
+            this.xtraTabPage5.Controls.Add(this.treeView1);
             this.xtraTabPage5.Margin = new System.Windows.Forms.Padding(32);
             this.xtraTabPage5.Name = "xtraTabPage5";
-            this.xtraTabPage5.Size = new System.Drawing.Size(1601, 887);
+            this.xtraTabPage5.Size = new System.Drawing.Size(1986, 1038);
             this.xtraTabPage5.Text = "xtraTabPage5";
             // 
-            // dataGridViewTest
+            // treeView1
             // 
-            this.dataGridViewTest.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewTest.Location = new System.Drawing.Point(37, 9);
-            this.dataGridViewTest.Name = "dataGridViewTest";
-            this.dataGridViewTest.RowHeadersWidth = 62;
-            this.dataGridViewTest.RowTemplate.Height = 30;
-            this.dataGridViewTest.Size = new System.Drawing.Size(59, 30);
-            this.dataGridViewTest.TabIndex = 0;
+            this.treeView1.Location = new System.Drawing.Point(94, 31);
+            this.treeView1.Name = "treeView1";
+            this.treeView1.Size = new System.Drawing.Size(59, 47);
+            this.treeView1.TabIndex = 0;
             // 
             // MSATServer
             // 
-            this.ClientSize = new System.Drawing.Size(1836, 1284);
+            this.ClientSize = new System.Drawing.Size(1988, 1327);
             this.Controls.Add(this.xp_cmdshell);
             this.Controls.Add(this.ribbonControl1);
             this.HtmlText = "MSATServer";
@@ -495,7 +492,6 @@ namespace MSATServer
             this.sqlServerPanel.ResumeLayout(false);
             this.sqlServerPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.sqlTreeList)).EndInit();
             this.xtraTabPage2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.xp_cmdshellpanelControl)).EndInit();
             this.xp_cmdshellpanelControl.ResumeLayout(false);
@@ -505,7 +501,6 @@ namespace MSATServer
             this.cmdpanelControl.ResumeLayout(false);
             this.cmdpanelControl.PerformLayout();
             this.xtraTabPage5.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTest)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -530,7 +525,6 @@ namespace MSATServer
         private DevExpress.XtraTab.XtraTabPage getsendFile;
         private DevExpress.XtraTab.XtraTabPage xtraTabPage5;
         private DevExpress.XtraEditors.PanelControl sqlServerPanel;
-        private DevExpress.XtraTreeList.TreeList sqlTreeList;
         private System.Windows.Forms.Button sqlSearch;
         private System.Windows.Forms.TextBox sqlCommand;
         private System.Windows.Forms.TextBox sqlInfo;
@@ -544,11 +538,30 @@ namespace MSATServer
         private System.Windows.Forms.Button xp_cmdshellButton;
         private System.Windows.Forms.TextBox xp_cmdshellInPutTextBox;
         private System.Windows.Forms.TextBox xp_cmdshellOutPutTextBox;
-        private System.Windows.Forms.DataGridView dataGridViewTest;
-        private System.Windows.Forms.DataGridView dataGridView;
+        //private System.Windows.Forms.DataGridView dataGridView;
+        private DataGridViewEx dataGridView;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.TextBox textBox1;
+        private TreeView treeView1;
+        private TreeView sqlTreeView;
+    }
+
+    class DataGridViewEx : DataGridView
+    {
+        SolidBrush solidBrush;
+
+        //重写OnRowPostPaint事件，展示数据时，在第一列添加编号
+        public DataGridViewEx()
+        {
+            solidBrush = new SolidBrush(this.RowHeadersDefaultCellStyle.ForeColor);
+        }
+        protected override void OnRowPostPaint(DataGridViewRowPostPaintEventArgs e)
+        {
+            //e.Graphics.DrawString((e.RowIndex + 1).ToString(), e.InheritedRowStyle.Font, solidBrush, e.RowBounds.Location.X + 5, e.RowBounds.Location.Y + 5);
+            //base.OnRowPostPaint(e);
+            e.Graphics.DrawString((e.RowIndex + 1).ToString(System.Globalization.CultureInfo.CurrentUICulture), e.InheritedRowStyle.Font,solidBrush, e.RowBounds.Location.X + 5, e.RowBounds.Location.Y + 4);
+        }
     }
 }
 
