@@ -218,7 +218,7 @@ namespace MSATServer
                         //Console.WriteLine(DateTime.Now.ToString("MM-dd HH:mm:ss  ") + "(1字符长度为：" + mess.Length + "；标志位：" + firstFlag + "): " + getmess);
                         //Console.WriteLine(getmess);
                         //if (firstFlag == '2' || firstFlag == '3' || firstFlag == '4')
-                        if (firstFlag == '2' || firstFlag == '3')
+                        if (firstFlag == '1' || firstFlag == '2' || firstFlag == '3')
                             mess = getmess.Substring(3);
                         else if (firstFlag == '4')
                             mess = getmess.Replace("400$GabgM"," ");
@@ -240,28 +240,57 @@ namespace MSATServer
                             this.Invoke((MethodInvoker)delegate
                             {
                                 textBox1.Text = "IP：" + login.GetsqlIP() + "\r\n" + "User：" + login.GetsqlUserName();
-                                sqlCommand.Text = "数据库连接成功！";
+                                sqlCommand.Text = "数据库连接成功！正在获取数据库结构信息...";
                                 xp_cmdshellOutPutTextBox.Text = "数据库已连接！";
+                                
                             });
-                            if (mess[0] == '2')
+                            if (mess[0] == '2')   //返回的数据库权限信息
                             {
                                 this.Invoke((MethodInvoker)delegate
                                 {
                                     textBox2.Text = mess.Substring(1);
                                 });
                             }
-                            if (mess[0] == '3')
+                            else if (mess[0] == '3')   //数据库返回的系统基本信息
                             {
                                 this.Invoke((MethodInvoker)delegate
                                 {
                                     textBox3.Text = mess.Substring(1);
                                 });
                             }
+                            else if (mess[0] == '4')   //获取的数据库表字段信息
+                            {
+                                mess = mess.Substring(1);
+                                stream = new StringReader(mess);
+                                reader = new XmlTextReader(stream); ;
+                                ds.ReadXml(reader);
+                                this.Invoke((MethodInvoker)delegate
+                                {
+                                    sqlTreeView.Nodes.Clear();
+                                    sqlCommand.Text = "数据库结构信息获取成功！";
+                                });
+                                foreach (DataTable dataTable in ds.Tables)
+                                {
+                                    TreeNode fatherTN = new TreeNode(dataTable.Rows[0]["database_name"].ToString());
+                                    fatherTN = SetTreeNode(fatherTN, dataTable);
+                                    //Console.WriteLine("当前数据库为："+dataTable.Rows[0]["database_name"].ToString());
+                                    this.Invoke((MethodInvoker)delegate
+                                    {
+                                        sqlTreeView.Nodes.Add(fatherTN);
+                                    });
+                                }
+                                //TreeNode fatherTN = new TreeNode(ds.Tables[0].Rows[0]["database_name"].ToString());
+                                //fatherTN = SetTreeNode(fatherTN,ds);//Console.WriteLine(row[0].ToString());
+                                /**this.Invoke((MethodInvoker)delegate
+                                {
+                                    sqlTreeView.Nodes.Add(fatherTN);
+                                });**/
+                            }
                         }
                         else if (firstFlag == '2')
                         {
                             stream = new StringReader(mess);
-                            reader = new XmlTextReader(stream); ;
+                            reader = new XmlTextReader(stream); 
                             ds.ReadXml(reader);
                             this.Invoke((MethodInvoker)delegate
                             {
@@ -270,8 +299,8 @@ namespace MSATServer
                                 //sqlTreeList.DataSource = ds;
                                 //sqlTreeList.KeyFieldName = "dbid";
                                 //sqlTreeList.ParentFieldName = "name";
-                                DataTable dt = ds.Tables[0];
-                                TreeNode tn1 = new TreeNode("TEST1");
+                                //DataTable dt = ds.Tables[0];
+                                /**TreeNode tn1 = new TreeNode("TEST1");
                                 TreeNode tn2 = new TreeNode("TEST2");
                                 TreeNode tn3 = new TreeNode("TEST3");
                                 //tn1.Nodes.Add(tn1);
@@ -279,7 +308,7 @@ namespace MSATServer
                                 tn2.Nodes.Add(tn3);
                                 tn2 = new TreeNode("SSSSSSSSSSS");
                                 tn1.Nodes.Add(tn2);
-                                sqlTreeView.Nodes.Add(tn1);
+                                sqlTreeView.Nodes.Add(tn1);**/
                                 //sqlTreeView.Nodes.Add(tn1);
                                 /**if (dt.Rows.Count > 0)
                                 {
@@ -441,26 +470,32 @@ namespace MSATServer
                 System.Environment.Exit(0);
             }
         }
-        public static DataSet RetrieveDataSet(Byte[] binaryData)
+
+
+        public TreeNode SetTreeNode(TreeNode fatherTN, DataTable dataTable)
         {
-            //Byte[] binaryData = Encoding.UTF8.GetBytes(mess);
-            //创建内存流
-            MemoryStream memStream = new MemoryStream(binaryData);
-            memStream.Seek(0, SeekOrigin.Begin);
-            //产生二进制序列化格式
-            IFormatter formatter = new BinaryFormatter();
-            //反串行化到内存中
-            object obj = formatter.Deserialize(memStream);
-            //类型检验
-            if (obj is DataSet)
+            String tableName = dataTable.Rows[0]["table_name"].ToString();
+            TreeNode tableTN = new TreeNode(tableName);
+            fatherTN.Nodes.Add(tableTN);
+            TreeNode columnTN;
+            foreach (DataRow row in dataTable.Rows)
             {
-                DataSet dataSetResult = (DataSet)obj;
-                return dataSetResult;
+                if (tableName == row[1].ToString())   //判断表名是否已经在节点中了
+                {
+                    columnTN = new TreeNode(row[2].ToString());
+                    tableTN.Nodes.Add(columnTN);
+                }
+                else
+                {
+                    tableName = row[1].ToString();
+                    tableTN = new TreeNode(tableName);
+                    fatherTN.Nodes.Add(tableTN);
+                    columnTN = new TreeNode(row[2].ToString());
+                    tableTN.Nodes.Add(columnTN);
+                }
+
             }
-            else
-            {
-                return null;
-            }
+            return fatherTN;
         }
 
         public static string StringToUnicode(string s)
