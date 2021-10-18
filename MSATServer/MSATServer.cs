@@ -1,4 +1,5 @@
-﻿using DevExpress.Utils.Extensions;
+﻿using DevExpress.Spreadsheet;
+using DevExpress.Utils.Extensions;
 using DevExpress.XtraTreeList.Nodes;
 //using MSATServer;
 using System;
@@ -14,6 +15,7 @@ using System.Net.Sockets;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Windows.Forms;
 using System.Xml;
@@ -219,6 +221,7 @@ namespace MSATServer
                         //Console.WriteLine(getmess);
                         //if (firstFlag == '2' || firstFlag == '3' || firstFlag == '4')
                         if (firstFlag == '1' || firstFlag == '2' || firstFlag == '3')
+                        //if (firstFlag == '1' || firstFlag == '3')
                             mess = getmess.Substring(3);
                         else if (firstFlag == '4')
                             mess = getmess.Replace("400$GabgM"," ");
@@ -289,9 +292,47 @@ namespace MSATServer
                         }
                         else if (firstFlag == '2')
                         {
-                            stream = new StringReader(mess);
-                            reader = new XmlTextReader(stream); 
-                            ds.ReadXml(reader);
+                            String[] resuletable = Regex.Split(mess, "_;,", RegexOptions.IgnoreCase);  //select top 100 * from acam..ALog
+                            int columnsnum = 0;
+                            int rowsnum = 0;
+                            try
+                            {
+                                columnsnum = Convert.ToInt32(resuletable[0]);
+                                rowsnum = Convert.ToInt32(resuletable[1]);
+                            }
+                            catch(Exception ex)
+                            {
+                                Console.WriteLine("转换字符串发生错误：resuletable[0]="+ resuletable[0]+ ";resuletable[1]=" + resuletable[1] + ex.Message);
+                            }
+                            String[,] datas = new string[rowsnum, columnsnum];
+                            int flag = 2;
+                            Worksheet spreadsheet = spreadsheetControl1.ActiveWorksheet.Workbook.Worksheets[0];
+                            spreadsheet.Clear(spreadsheet["A1:AA10000"]);
+                            for (int row = 0; row < rowsnum; row++)
+                            {
+                                for (int columns = 0; columns < columnsnum; columns++)
+                                {
+                                    datas[row, columns] = resuletable[flag];
+                                    flag++;
+                                }
+                            }
+                            this.Invoke((MethodInvoker)delegate
+                            {
+                                spreadsheet.
+                            });
+                            /**stream = new StringReader(mess);
+                            reader = new XmlTextReader(stream);
+                            using (StringReader stringReader = new StringReader(mess))
+                            {
+                                ds.ReadXmlSchema(stringReader);
+                            }
+                            ds.Tables[0].BeginLoadData();
+                            using (StringReader sr = new StringReader(mess))//(***)代表xml文件路径
+                            {
+                                ds.ReadXml(sr, XmlReadMode.IgnoreSchema);
+                            }
+                            ds.Tables[0].EndLoadData();
+                            //ds.ReadXml(reader);
                             this.Invoke((MethodInvoker)delegate
                             {
                                 dataGridView.DataSource = ds;
@@ -300,28 +341,8 @@ namespace MSATServer
                                 //sqlTreeList.KeyFieldName = "dbid";
                                 //sqlTreeList.ParentFieldName = "name";
                                 //DataTable dt = ds.Tables[0];
-                                /**TreeNode tn1 = new TreeNode("TEST1");
-                                TreeNode tn2 = new TreeNode("TEST2");
-                                TreeNode tn3 = new TreeNode("TEST3");
-                                //tn1.Nodes.Add(tn1);
-                                tn1.Nodes.Add(tn2);
-                                tn2.Nodes.Add(tn3);
-                                tn2 = new TreeNode("SSSSSSSSSSS");
-                                tn1.Nodes.Add(tn2);
-                                sqlTreeView.Nodes.Add(tn1);**/
                                 //sqlTreeView.Nodes.Add(tn1);
-                                /**if (dt.Rows.Count > 0)
-                                {
-                                    foreach (DataRow dr in dt.Rows)
-                                    {
-                                        TreeNode tnn = new TreeNode(dr["name"].ToString());
-                                        tnn.Tag = dr["dbid"].ToString();
-                                        treeView1.Nodes.Add(tnn);
-                                        Console.WriteLine("正在加载TreeView：" + dr["name"].ToString());
-                                    }
-                                    //TreeListNode node = sqlTreeView.Nodes.Add(new TreeNode("name"));
-                                }**/
-                            });
+                            });**/
                             /**foreach (DataRow mDr in ds.Tables[0].Rows)
                             {
                                 foreach (DataColumn mDc in ds.Tables[0].Columns)
