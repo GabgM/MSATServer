@@ -106,6 +106,7 @@ namespace MSATServer
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(492, 398);
+            this.ControlBox = false;
             this.Controls.Add(this.back);
             this.Controls.Add(this.yes);
             this.Controls.Add(this.serverport);
