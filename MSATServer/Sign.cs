@@ -84,6 +84,45 @@ namespace MSATServer
         {
             try
             {
+                //Console.WriteLine(mess);
+                /**if (flag != "1" && flag != "2" && flag != "3" && flag != "4")
+                    mess = StringToUnicode(mess);
+                else if (flag == "4")
+                    mess = "$GabgM" + mess;**/
+                mess = StringToUnicode(mess);
+                //int datanum = ((mess.Length + 3) / (1024 * 1024 * 3)) + 1;
+                //mess = flag + Scale.ToCurr(datanum).Substring(1, 2) + mess;
+                byte[] sendmess = Encoding.UTF8.GetBytes(mess);
+                //mess = flag + Scale.ToCurr(((sendmess.Length + 3) / (1024 * 1024 * 3)) + 1).Substring(1, 2) + mess;
+                mess = flag + getLength(mess.Length) + mess;
+                Console.WriteLine("标识位为：" + flag + getLength(mess.Length) + "；实际大小：" + mess.Length);
+                sendmess = Encoding.UTF8.GetBytes(mess);
+                tcpClient.Send(sendmess);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("发送消息：TcpServer出现异常：" + ex.Message + "\r\n请重新打开服务端程序创建新的连接", "断开连接");
+                //System.Environment.Exit(0);
+            }
+        }
+
+        public static String getLength(int stringlength)
+        {
+            String strLength = "";
+            stringlength += 11;
+            strLength = Convert.ToString(stringlength);
+            for (int i = strLength.Length; i < 11; i++)
+            {
+                strLength = "0" + strLength;
+            }
+            return strLength;
+        }
+
+        /**
+        public void SendMess(Socket tcpClient, String mess, String flag)
+        {
+            try
+            {
                 Console.WriteLine(mess);
                 mess = StringToUnicode(mess);
                 mess = flag + Scale.ToCurr((mess.Length + 3) / (1024 * 1024 * 3)).Substring(1, 2) + mess;
@@ -97,7 +136,7 @@ namespace MSATServer
                 Console.WriteLine("TcpServer出现异常：" + ex.Message + "\r\n请重新打开服务端程序创建新的连接", "断开连接");
                 System.Environment.Exit(0);
             }
-        }
+        }**/
 
         public static string StringToUnicode(string s)
         {

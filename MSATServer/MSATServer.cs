@@ -29,11 +29,11 @@ namespace MSATServer
 
         public MSATServer()
         {
-            
+
             listening.Show();
             listening.SetLoading(loading);
 
-            
+
 
             new Thread(() =>
             {
@@ -53,7 +53,7 @@ namespace MSATServer
                 Console.WriteLine("Listen...");
                 serverHOST = listening.GetHost();
                 serverPORT = listening.GetPort();
-                Console.WriteLine(serverHOST+":"+serverPORT);
+                Console.WriteLine(serverHOST + ":" + serverPORT);
                 IPEndPoint serverIP = new IPEndPoint(IPAddress.Parse(serverHOST), serverPORT);
                 //Send send = new Send();
                 Socket tcpServer = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
@@ -65,7 +65,8 @@ namespace MSATServer
                 Console.WriteLine("连接成功！\r\n");
                 //send.TcpServer(tcpClient);
                 TcpServer();
-                this.Invoke((MethodInvoker)delegate { 
+                this.Invoke((MethodInvoker)delegate
+                {
                     sqlCommand.Text = "客户端连接成功！请连接数据库！";
                     loading.Close();
                 });
@@ -80,7 +81,8 @@ namespace MSATServer
 
         Sign login = Sign.GetSingleMode();
 
-        private void MSATServer_Load(object sender, EventArgs e) {
+        private void MSATServer_Load(object sender, EventArgs e)
+        {
             ribbonControl1.Minimized = true;
             /**Console.WriteLine("Listen...");
             IPEndPoint serverIP = new IPEndPoint(IPAddress.Parse("192.168.247.1"), 4444);
@@ -113,6 +115,14 @@ namespace MSATServer
             result = MessageBox.Show("确定退出吗？", "退出", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
             if (result == DialogResult.OK)
             {
+                using (StreamWriter sw = new StreamWriter("xp_cmdshellOutPut.txt"))
+                {
+                    sw.WriteLine(xp_cmdshellOutPutTextBox.Text);
+                }
+                using (StreamWriter sw = new StreamWriter("CmdOutPut.txt"))
+                {
+                    sw.WriteLine(cmdOutPutTextBox.Text);
+                }
                 System.Environment.Exit(0);
                 //Application.ExitThread();
             }
@@ -151,7 +161,7 @@ namespace MSATServer
 
         private void refresh_Click(object sender, EventArgs e)
         {
-            Console.WriteLine(""+login.GetsqlIP()+login.GetsqlUserName()+login.GetsqlPWD()+login.GetsqlName());
+            Console.WriteLine("" + login.GetsqlIP() + login.GetsqlUserName() + login.GetsqlPWD() + login.GetsqlName());
         }
 
         private void cmdButton_Click(object sender, EventArgs e)
@@ -164,7 +174,7 @@ namespace MSATServer
                 {
                     mess = " ";
                 }
-                SendMess(tcpClient,mess,"4");
+                SendMess(tcpClient, mess, "4");
                 //mess = StringToUnicode(mess);
                 //mess = "4" + Scale.ToCurr((mess.Length + 3) / (1024 * 1024 * 3)).Substring(1, 2) + mess;
                 //tcpClient.Send(Encoding.UTF8.GetBytes(mess));
@@ -172,7 +182,24 @@ namespace MSATServer
             catch (Exception ex)
             {
                 Console.WriteLine("TcpServer出现异常：" + ex.Message + "\r\n请重新打开服务端程序创建新的连接", "断开连接");
-                System.Environment.Exit(0);
+                DialogResult result;
+
+                Console.WriteLine("Socket连接断开，正在关闭程序!");
+                result = MessageBox.Show("Socket连接断开，请退出程序后重新连接！\r\n确定退出吗？", "退出", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                if (result == DialogResult.OK)
+                {
+                    using (StreamWriter sw = new StreamWriter("xp_cmdshellOutPut.txt"))
+                    {
+                        sw.WriteLine(xp_cmdshellOutPutTextBox.Text);
+                    }
+                    using (StreamWriter sw = new StreamWriter("CmdOutPut.txt"))
+                    {
+                        sw.WriteLine(cmdOutPutTextBox.Text);
+                    }
+                    System.Environment.Exit(0);
+                    //Application.ExitThread();
+                }
+                //System.Environment.Exit(0);
             }
         }
 
@@ -232,7 +259,7 @@ namespace MSATServer
                         }
                         else
                             mess = UnicodeToString(getmess.Replace(allFlag, ""));
-                        if(mess.Length < 40)
+                        if (mess.Length < 40)
                             Console.WriteLine(DateTime.Now.ToString("MM-dd HH:mm:ss  ") + "(本数据包长度为：" + thisLenFlag + "；标志位：" + firstFlag + "；数据包总长度：" + lenFlag + "): " + mess);
                         else
                             Console.WriteLine(DateTime.Now.ToString("MM-dd HH:mm:ss  ") + "(本数据包长度为：" + thisLenFlag + "；标志位：" + firstFlag + "；数据包总长度：" + lenFlag + "): " + mess.Substring(0, 35));
@@ -246,7 +273,7 @@ namespace MSATServer
                                 Console.WriteLine(match.Value);
 
                         }**/
-                        while (lenFlag > thisLenFlag )
+                        while (lenFlag > thisLenFlag)
                         //while (flag)
                         {
                             length = tcpClient.Receive(data);
@@ -277,7 +304,7 @@ namespace MSATServer
                                 textBox1.Text = "IP：" + login.GetsqlIP() + "\r\n" + "User：" + login.GetsqlUserName();
                                 sqlCommand.Text = "数据库连接成功！正在获取数据库结构信息...";
                                 xp_cmdshellOutPutTextBox.Text = "数据库已连接！";
-                                
+
                             });
                             if (mess[0] == '2')   //返回的数据库权限信息
                             {
@@ -328,7 +355,7 @@ namespace MSATServer
                             try
                             {
                                 //Console.WriteLine(mess);
-                                using (StreamWriter sw = new StreamWriter(".tmp.csv",false,Encoding.UTF8))
+                                using (StreamWriter sw = new StreamWriter(".tmp.csv", false, Encoding.UTF8))
                                 {
                                     sw.WriteLine(mess);
                                 }
@@ -352,11 +379,11 @@ namespace MSATServer
                                 //worksheet.Columns.AutoFit(0, da.ColumnCount);//从0列到有数据的列自动列宽
 
                                 spreadsheet.Workbook.LoadDocument(".tmp.xlsx", DocumentFormat.OpenXml);
-                                var da = spreadsheetControl1.ActiveWorksheet.GetUsedRange();//获得有数据的区域
+                                /**var da = spreadsheetControl1.ActiveWorksheet.GetUsedRange();//获得有数据的区域     //结果长度自适应，大量数据会造成卡顿
                                 spreadsheetControl1.ActiveWorksheet.Columns.AutoFit(0, da.ColumnCount);
-                                spreadsheetControl1.ActiveWorksheet.FreezeRows(0,da);
+                                spreadsheetControl1.ActiveWorksheet.FreezeRows(0, da);
                                 //spreadsheet.Columns.AutoFit(0, da.ColumnCount);
-                                spreadsheet.FreezeRows(0, da);
+                                spreadsheet.FreezeRows(0, da);**/
                                 sqlCommand.Text = sqlcommnd;
                             });
 
@@ -407,6 +434,61 @@ namespace MSATServer
                             });
                             //cmdOutPutText += mess;
                         }
+                        else if (firstFlag == '5')
+                        {
+                            String filename = Path.GetFileName(ClientFilePathTextEdit.Text);
+                            String[] clientInfo = mess.Split(',');
+                            long fileLength = Convert.ToInt64(clientInfo[1]);
+                            byte[] Filebuffer = new byte[1024 * 1024 * 3];
+                            if (filename == clientInfo[0])
+                            {
+                                String savePath = System.Windows.Forms.Application.StartupPath + "\\" + filename;
+                                int rec = 0;//定义获取接受数据的长度初始值
+                                long recFileLength = 0;
+                                //bool firstWrite = true;
+                                using (FileStream fs = new FileStream(savePath, FileMode.Create, FileAccess.Write))
+                                {
+                                    this.Invoke((MethodInvoker)delegate
+                                    {
+                                        //ClientFilePathTextEdit.Text = tcpClient.RemoteEndPoint + "; 开始下载！ 文件数据大小：" + fileLength;
+                                        while (recFileLength < fileLength)//判断读取文件长度是否小于总文件长度
+                                        {
+                                            rec = tcpClient.Receive(Filebuffer);//继续接收文件并存入缓存
+                                            fs.Write(Filebuffer, 0, rec);//将缓存中的数据写入文件中
+                                            fs.Flush();//清空缓存信息
+                                            recFileLength += rec;//继续记录已获取的数据大小
+                                            /**if (firstWrite)//第一次写入时
+                                            {
+                                                fs.Write(Filebuffer, 1, firstRcv - 1);//截取字节数据写入文件中
+                                                fs.Flush();//清空缓存信息
+                                                recFileLength += firstRcv - 1;//记录已获取的数据大小
+                                                firstWrite = false;//切换状态
+                                            }
+                                            else
+                                            {
+                                                rec = tcpClient.Receive(Filebuffer);//继续接收文件并存入缓存
+                                                fs.Write(Filebuffer, 0, rec);//将缓存中的数据写入文件中
+                                                fs.Flush();//清空缓存信息
+                                                recFileLength += rec;//继续记录已获取的数据大小
+                                            }**/
+                                            Console.WriteLine("{0}: 已接收数据：{1}/{2}", tcpClient.RemoteEndPoint, recFileLength, fileLength);//查看已接受数据进度
+                                            ClientFilePathTextEdit.Text = "客户端地址：" + tcpClient.RemoteEndPoint + " \r\n已接收数据：" + recFileLength + "/" + fileLength;
+                                        }
+                                        fs.Close();
+                                        Console.WriteLine("下载完成！路径为：{0}", savePath);//查看已接受数据进度
+                                        ClientFilePathTextEdit.Text += "\r\n下载完成！文件路径为：" + savePath;
+                                        cmdOutPutTextBox.Text += "\r\n下载完成！文件路径为：" + savePath;
+                                    });
+                                }
+                            }
+                        }
+                        else if (firstFlag == '6')
+                        {
+                            this.Invoke((MethodInvoker)delegate
+                            {
+                                cmdOutPutTextBox.Text += mess;
+                            });
+                        }
                         else if (firstFlag == 'a')
                         {
                             this.Invoke((MethodInvoker)delegate
@@ -429,6 +511,22 @@ namespace MSATServer
                     {
                         Console.WriteLine("TcpServer出现异常：" + ex.Message + "\r\n请重新打开服务端程序创建新的连接", "断开连接");
                         Console.WriteLine(ex);
+                        DialogResult result;
+                        Console.WriteLine("Socket连接断开，正在关闭程序!");
+                        result = MessageBox.Show("Socket连接断开，所有结果已保存，请退出程序后尝试重新连接！\r\n确定退出吗？", "退出", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                        if (result == DialogResult.OK)
+                        {
+                            using (StreamWriter sw = new StreamWriter("xp_cmdshellOutPut.txt"))
+                            {
+                                sw.WriteLine(xp_cmdshellOutPutTextBox.Text);
+                            }
+                            using (StreamWriter sw = new StreamWriter("CmdOutPut.txt"))
+                            {
+                                sw.WriteLine(cmdOutPutTextBox.Text);
+                            }
+                            System.Environment.Exit(0);
+                            //Application.ExitThread();
+                        }
                         //System.Environment.Exit(0);
                     }
                 }
@@ -459,10 +557,11 @@ namespace MSATServer
             try
             {
                 //Console.WriteLine(mess);
-                if (flag != "1" && flag != "2" && flag != "3" && flag != "4")
+                /**if (flag != "1" && flag != "2" && flag != "3" && flag != "4")
                     mess = StringToUnicode(mess);
                 else if (flag == "4")
-                    mess = "$GabgM" + mess;
+                    mess = "$GabgM" + mess;**/
+                mess = StringToUnicode(mess);
                 //int datanum = ((mess.Length + 3) / (1024 * 1024 * 3)) + 1;
                 //mess = flag + Scale.ToCurr(datanum).Substring(1, 2) + mess;
                 byte[] sendmess = Encoding.UTF8.GetBytes(mess);
@@ -593,7 +692,7 @@ namespace MSATServer
                 //MessageBox.Show("uft8的编码的字节个数：" + temp1.Length);
                 for (int i = 0; i < temp1.Length; i++)
                 {
-                   // MessageBox.Show(Convert.ToUInt16(temp1[i]).ToString());
+                    // MessageBox.Show(Convert.ToUInt16(temp1[i]).ToString());
                 }
                 string result = uft8.GetString(temp1);
                 return result;
@@ -694,14 +793,15 @@ namespace MSATServer
         private void xp_cmdshellButton_Click(object sender, EventArgs e)
         {
             String xp_cmdshellInPut = xp_cmdshellInPutTextBox.Text.ToString();
-            SendMess(tcpClient,xp_cmdshellInPut,"3");
+            SendMess(tcpClient, xp_cmdshellInPut, "3");
         }
 
         private void sqlSearch_Click(object sender, EventArgs e)
         {
             sqlcommnd = sqlCommand.Text.ToString();
             SendMess(tcpClient, sqlcommnd, "2");
-            this.Invoke((MethodInvoker)delegate {
+            this.Invoke((MethodInvoker)delegate
+            {
                 sqlCommand.Text = sqlcommnd + "\r\n 正在查询中，请勿重复点击查询！";
             });
         }
@@ -736,9 +836,67 @@ namespace MSATServer
             }
             catch (Exception ex)
             {
-                MessageBox.Show("失败原因：" + ex.Message , "导出失败");
+                MessageBox.Show("失败原因：" + ex.Message, "导出失败");
             }
 
+        }
+
+        private void DownloadButton_Click(object sender, EventArgs e)
+        {
+            String clientFilePath = ClientFilePathTextEdit.Text;
+            SendMess(tcpClient,clientFilePath,"5");
+        }
+
+        private void UploadButton_Click(object sender, EventArgs e)
+        {
+            /**OpenFileDialog GetData = new OpenFileDialog();     //以打开的方式
+            GetData.Multiselect = false;                       //该值确定是否可以选择多个文件
+            GetData.Title = "请选择文件";                       //标题
+            GetData.InitialDirectory = @"C:\";                 //默认打开C:\路径（可更改）
+            //限制只显示文件夹及后缀为sql的文件（可根据需求更改）
+            GetData.Filter = "任意文件(*.*)|*.*";
+            string serverFilePath = "";
+            while (true)
+            {
+                if (GetData.ShowDialog() == DialogResult.OK)
+                {     //如果选择了文件
+                    serverFilePath = GetData.FileName;                    //script赋值为所选文件的路径
+                    break;
+                }
+            }
+            Console.Write("选择了文件：" + serverFilePath);**/
+            String filePath = ClientFilePathTextEdit.Text;
+            FileStream fsRead = new FileStream(filePath, FileMode.Open);
+            long fileLength = fsRead.Length;
+            SendMess(tcpClient, Path.GetFileName(filePath) + "," + fileLength.ToString(), "6");
+            byte[] Filebuffer = new byte[1024 * 1024 * 3];//定义5MB的缓存空间（1024字节(b)=1千字节(kb)）
+            int readLength = 1024 * 1024 * 3;  //定义读取的长度
+                                               //bool firstRead = true;//定义首次读取的状态
+            long sentFileLength = 0;//定义已发送的长度
+
+            while (readLength > 0 && sentFileLength < fileLength)
+            {
+                if ((fileLength - sentFileLength) < 1024 * 1024 * 3)
+                {
+                    readLength = (int)(fileLength - sentFileLength);
+                }
+                sentFileLength += readLength;//计算已读取文件大小
+                                             //第一次发送的字节流上加个前缀1
+                fsRead.Read(Filebuffer, 0, readLength);
+                /**if (firstRead)
+                {
+                    byte[] firstBuffer = new byte[readLength];//这个操作同样也是用来标记文件的
+                    //firstBuffer[0] = 1;//将第一个字节标记成1，代表为文件
+                    Buffer.BlockCopy(Filebuffer, 0, firstBuffer, 1, readLength);//偏移复制字节数组
+                    tcpClient.Send(firstBuffer, 0, readLength , SocketFlags.None);
+                    //Console.WriteLine("第一次读取数据成功，在前面添加一个标记");//发送文件数据包
+                    firstRead = false;//切换状态，避免再次进入
+                    continue;
+                }**/
+                tcpClient.Send(Filebuffer, 0, readLength, SocketFlags.None);//继续发送剩下的数据包
+                Console.WriteLine("{0}: 已发送数据：{1}/{2}", tcpClient.RemoteEndPoint, sentFileLength, fileLength);//查看发送进度
+            }
+            fsRead.Close();//关闭文件流
         }
     }
 }
