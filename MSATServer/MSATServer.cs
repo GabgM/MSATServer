@@ -84,7 +84,7 @@ namespace MSATServer
 
         private void MSATServer_Load(object sender, EventArgs e)
         {
-            ribbonControl1.Minimized = true;
+            //ribbonControl1.Minimized = true;
         }
 
         private void MSATServer_FormClosing(object sender, FormClosingEventArgs e)
@@ -97,10 +97,12 @@ namespace MSATServer
                 using (StreamWriter sw = new StreamWriter("xp_cmdshellOutPut.txt"))
                 {
                     sw.WriteLine(xp_cmdshellOutPutTextBox.Text);
+                    sw.Close();
                 }
                 using (StreamWriter sw = new StreamWriter("CmdOutPut.txt"))
                 {
                     sw.WriteLine(cmdOutPutTextBox.Text);
+                    sw.Close();
                 }
                 System.Environment.Exit(0);
                 //Application.ExitThread();
