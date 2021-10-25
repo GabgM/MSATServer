@@ -66,14 +66,14 @@ namespace MSATServer
             this.xp_cmdshellInPutTextBox = new System.Windows.Forms.TextBox();
             this.cmd = new DevExpress.XtraTab.XtraTabPage();
             this.cmdpanelControl = new DevExpress.XtraEditors.PanelControl();
+            this.UploadButton = new System.Windows.Forms.Button();
+            this.DownloadButton = new System.Windows.Forms.Button();
+            this.ClientFilePathTextEdit = new System.Windows.Forms.TextBox();
             this.cmdButton = new System.Windows.Forms.Button();
             this.cmdInPutTextBox = new System.Windows.Forms.TextBox();
             this.cmdOutPutTextBox = new System.Windows.Forms.TextBox();
             this.getsendFile = new DevExpress.XtraTab.XtraTabPage();
             this.xtraTabPage5 = new DevExpress.XtraTab.XtraTabPage();
-            this.ClientFilePathTextEdit = new System.Windows.Forms.TextBox();
-            this.DownloadButton = new System.Windows.Forms.Button();
-            this.UploadButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xp_cmdshell)).BeginInit();
             this.xp_cmdshell.SuspendLayout();
@@ -424,6 +424,39 @@ namespace MSATServer
             this.cmdpanelControl.Size = new System.Drawing.Size(5519, 2810);
             this.cmdpanelControl.TabIndex = 0;
             // 
+            // UploadButton
+            // 
+            this.UploadButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.UploadButton.Location = new System.Drawing.Point(1323, 655);
+            this.UploadButton.Name = "UploadButton";
+            this.UploadButton.Size = new System.Drawing.Size(159, 50);
+            this.UploadButton.TabIndex = 5;
+            this.UploadButton.Text = "上传";
+            this.UploadButton.UseVisualStyleBackColor = true;
+            this.UploadButton.Click += new System.EventHandler(this.UploadButton_Click);
+            // 
+            // DownloadButton
+            // 
+            this.DownloadButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.DownloadButton.Location = new System.Drawing.Point(1323, 601);
+            this.DownloadButton.Name = "DownloadButton";
+            this.DownloadButton.Size = new System.Drawing.Size(159, 56);
+            this.DownloadButton.TabIndex = 4;
+            this.DownloadButton.Text = "下载";
+            this.DownloadButton.UseVisualStyleBackColor = true;
+            this.DownloadButton.Click += new System.EventHandler(this.DownloadButton_Click);
+            // 
+            // ClientFilePathTextEdit
+            // 
+            this.ClientFilePathTextEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.ClientFilePathTextEdit.Font = new System.Drawing.Font("Tahoma", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ClientFilePathTextEdit.Location = new System.Drawing.Point(808, 603);
+            this.ClientFilePathTextEdit.Multiline = true;
+            this.ClientFilePathTextEdit.Name = "ClientFilePathTextEdit";
+            this.ClientFilePathTextEdit.Size = new System.Drawing.Size(506, 94);
+            this.ClientFilePathTextEdit.TabIndex = 3;
+            this.ClientFilePathTextEdit.Text = "请输入想要下载的文件路径";
+            // 
             // cmdButton
             // 
             this.cmdButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -465,6 +498,8 @@ namespace MSATServer
             this.cmdOutPutTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.cmdOutPutTextBox.Size = new System.Drawing.Size(1489, 593);
             this.cmdOutPutTextBox.TabIndex = 0;
+            this.cmdOutPutTextBox.Text = "/**\r\n * \r\n * 下载文件，请在下方输入客户端的文件路径。\r\n * 上传文件，点击上传，选择文件点击确定即可。\r\n * 文件传输时未加密，若需要请加密压缩" +
+    "后传输。\r\n * \r\n * */";
             this.cmdOutPutTextBox.TextChanged += new System.EventHandler(this.cmdOutPutTextBox_TextChanged);
             // 
             // getsendFile
@@ -472,48 +507,15 @@ namespace MSATServer
             this.getsendFile.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("getsendFile.ImageOptions.SvgImage")));
             this.getsendFile.Margin = new System.Windows.Forms.Padding(32);
             this.getsendFile.Name = "getsendFile";
-            this.getsendFile.Size = new System.Drawing.Size(1538, 728);
+            this.getsendFile.Size = new System.Drawing.Size(1489, 709);
             this.getsendFile.Text = "文件传输";
             // 
             // xtraTabPage5
             // 
             this.xtraTabPage5.Margin = new System.Windows.Forms.Padding(32);
             this.xtraTabPage5.Name = "xtraTabPage5";
-            this.xtraTabPage5.Size = new System.Drawing.Size(1538, 728);
+            this.xtraTabPage5.Size = new System.Drawing.Size(1489, 709);
             this.xtraTabPage5.Text = "xtraTabPage5";
-            // 
-            // ClientFilePathTextEdit
-            // 
-            this.ClientFilePathTextEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.ClientFilePathTextEdit.Font = new System.Drawing.Font("Tahoma", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ClientFilePathTextEdit.Location = new System.Drawing.Point(808, 603);
-            this.ClientFilePathTextEdit.Multiline = true;
-            this.ClientFilePathTextEdit.Name = "ClientFilePathTextEdit";
-            this.ClientFilePathTextEdit.Size = new System.Drawing.Size(506, 94);
-            this.ClientFilePathTextEdit.TabIndex = 3;
-            this.ClientFilePathTextEdit.Text = "请输入想要下载或上传的文件路径";
-            // 
-            // DownloadButton
-            // 
-            this.DownloadButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.DownloadButton.Location = new System.Drawing.Point(1323, 601);
-            this.DownloadButton.Name = "DownloadButton";
-            this.DownloadButton.Size = new System.Drawing.Size(159, 56);
-            this.DownloadButton.TabIndex = 4;
-            this.DownloadButton.Text = "下载";
-            this.DownloadButton.UseVisualStyleBackColor = true;
-            this.DownloadButton.Click += new System.EventHandler(this.DownloadButton_Click);
-            // 
-            // UploadButton
-            // 
-            this.UploadButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.UploadButton.Location = new System.Drawing.Point(1323, 655);
-            this.UploadButton.Name = "UploadButton";
-            this.UploadButton.Size = new System.Drawing.Size(159, 50);
-            this.UploadButton.TabIndex = 5;
-            this.UploadButton.Text = "上传";
-            this.UploadButton.UseVisualStyleBackColor = true;
-            this.UploadButton.Click += new System.EventHandler(this.UploadButton_Click);
             // 
             // MSATServer
             // 

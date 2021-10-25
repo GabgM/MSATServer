@@ -7,6 +7,7 @@ using System.Globalization;
 using System.IO;
 using System.Net;
 using System.Net.Sockets;
+using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
@@ -84,28 +85,6 @@ namespace MSATServer
         private void MSATServer_Load(object sender, EventArgs e)
         {
             ribbonControl1.Minimized = true;
-            /**Console.WriteLine("Listen...");
-            IPEndPoint serverIP = new IPEndPoint(IPAddress.Parse("192.168.247.1"), 4444);
-            Send send = new Send();
-            Socket tcpServer = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-            tcpServer.Bind(serverIP);
-            tcpServer.Listen(1000);
-            Socket tcpClient = tcpServer.Accept();
-            
-            Console.WriteLine("连接成功！\r\n");
-            send.TcpServer(tcpClient);**/
-            //send.TcpServer(serverIP);
-            //this.FormClosing += new FormClosingEventHandler(MainForm_Closing);
-        }
-
-        private void xtraTabControl1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void barButtonItem1_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-
         }
 
         private void MSATServer_FormClosing(object sender, FormClosingEventArgs e)
@@ -132,31 +111,11 @@ namespace MSATServer
             }
         }
 
-        private void spreadsheetControl1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panelControl1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
         private void sign_Click(object sender, EventArgs e)
         {
             login.settcpClient(tcpClient);
             login.Show();
             //Application.Run(new Sign());
-        }
-
-        private void simpleButton1_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void refresh_Click(object sender, EventArgs e)
@@ -433,6 +392,7 @@ namespace MSATServer
                                 //loading.Close();
                             });
                             //cmdOutPutText += mess;
+
                         }
                         else if (firstFlag == '5')
                         {
@@ -849,7 +809,7 @@ namespace MSATServer
 
         private void UploadButton_Click(object sender, EventArgs e)
         {
-            /**OpenFileDialog GetData = new OpenFileDialog();     //以打开的方式
+            OpenFileDialog GetData = new OpenFileDialog();     //以打开的方式
             GetData.Multiselect = false;                       //该值确定是否可以选择多个文件
             GetData.Title = "请选择文件";                       //标题
             GetData.InitialDirectory = @"C:\";                 //默认打开C:\路径（可更改）
@@ -861,15 +821,39 @@ namespace MSATServer
                 if (GetData.ShowDialog() == DialogResult.OK)
                 {     //如果选择了文件
                     serverFilePath = GetData.FileName;                    //script赋值为所选文件的路径
+                    String filePath = serverFilePath;
+                    FileStream fsRead = new FileStream(filePath, FileMode.Open);
+                    long fileLength = fsRead.Length;
+                    SendMess(tcpClient, Path.GetFileName(filePath) + "," + fileLength.ToString(), "6");
+                    byte[] Filebuffer = new byte[1024 * 1024 * 3];//定义3MB的缓存空间（1024字节(b)=1千字节(kb)）
+                    int readLength = 1024 * 1024 * 3;  //定义读取的长度
+                                                       //bool firstRead = true;//定义首次读取的状态
+                    long sentFileLength = 0;//定义已发送的长度
+
+                    while (readLength > 0 && sentFileLength < fileLength)
+                    {
+                        if ((fileLength - sentFileLength) < 1024 * 1024 * 3)
+                        {
+                            readLength = (int)(fileLength - sentFileLength);
+                        }
+                        sentFileLength += readLength;//计算已读取文件大小
+                                                     //第一次发送的字节流上加个前缀1
+                        fsRead.Read(Filebuffer, 0, readLength);
+                        tcpClient.Send(Filebuffer, 0, readLength, SocketFlags.None);//继续发送剩下的数据包
+                        Console.WriteLine("{0}: 已发送数据：{1}/{2}", tcpClient.RemoteEndPoint, sentFileLength, fileLength);//查看发送进度
+                    }
+                    fsRead.Close();//关闭文件流
                     break;
                 }
             }
-            Console.Write("选择了文件：" + serverFilePath);**/
+            Console.Write("选择了文件：" + serverFilePath);
+
+            /**
             String filePath = ClientFilePathTextEdit.Text;
             FileStream fsRead = new FileStream(filePath, FileMode.Open);
             long fileLength = fsRead.Length;
             SendMess(tcpClient, Path.GetFileName(filePath) + "," + fileLength.ToString(), "6");
-            byte[] Filebuffer = new byte[1024 * 1024 * 3];//定义5MB的缓存空间（1024字节(b)=1千字节(kb)）
+            byte[] Filebuffer = new byte[1024 * 1024 * 3];//定义3MB的缓存空间（1024字节(b)=1千字节(kb)）
             int readLength = 1024 * 1024 * 3;  //定义读取的长度
                                                //bool firstRead = true;//定义首次读取的状态
             long sentFileLength = 0;//定义已发送的长度
@@ -883,20 +867,35 @@ namespace MSATServer
                 sentFileLength += readLength;//计算已读取文件大小
                                              //第一次发送的字节流上加个前缀1
                 fsRead.Read(Filebuffer, 0, readLength);
-                /**if (firstRead)
-                {
-                    byte[] firstBuffer = new byte[readLength];//这个操作同样也是用来标记文件的
-                    //firstBuffer[0] = 1;//将第一个字节标记成1，代表为文件
-                    Buffer.BlockCopy(Filebuffer, 0, firstBuffer, 1, readLength);//偏移复制字节数组
-                    tcpClient.Send(firstBuffer, 0, readLength , SocketFlags.None);
-                    //Console.WriteLine("第一次读取数据成功，在前面添加一个标记");//发送文件数据包
-                    firstRead = false;//切换状态，避免再次进入
-                    continue;
-                }**/
                 tcpClient.Send(Filebuffer, 0, readLength, SocketFlags.None);//继续发送剩下的数据包
                 Console.WriteLine("{0}: 已发送数据：{1}/{2}", tcpClient.RemoteEndPoint, sentFileLength, fileLength);//查看发送进度
             }
             fsRead.Close();//关闭文件流
+             **/
+
         }
+
+        /// <summary>
+        /// 加密
+        /// </summary>
+        /// <param name="array">要加密的 byte[] 数组</param>
+        /// <param name="key"></param>
+        /// <returns></returns>
+        public static byte[] Encrypt(byte[] array)
+        {
+            String key = "YGabgMMgbaGGabgMMgbaGGabgMMgbaGY";//FmtPassword(key);
+            byte[] keyArray = Encoding.UTF8.GetBytes(key);
+
+            RijndaelManaged rDel = new RijndaelManaged();
+            rDel.Key = keyArray;
+            rDel.Mode = CipherMode.ECB;
+            rDel.Padding = PaddingMode.PKCS7;
+            ICryptoTransform cTransform = rDel.CreateEncryptor();
+            byte[] resultArray = cTransform.TransformFinalBlock(array, 0, array.Length);
+            Console.Write("加密后的长度为：" + resultArray.Length);
+            return resultArray;
+        }
+
+
     }
 }
