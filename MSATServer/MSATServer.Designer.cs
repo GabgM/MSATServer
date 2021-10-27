@@ -37,31 +37,31 @@ namespace MSATServer
             this.getsendFile = new DevExpress.XtraTab.XtraTabPage();
             this.cmd = new DevExpress.XtraTab.XtraTabPage();
             this.cmdpanelControl = new DevExpress.XtraEditors.PanelControl();
-            this.cmdOutPutTextBox = new System.Windows.Forms.TextBox();
-            this.cmdInPutTextBox = new System.Windows.Forms.TextBox();
-            this.cmdButton = new System.Windows.Forms.Button();
-            this.ClientFilePathTextEdit = new System.Windows.Forms.TextBox();
-            this.DownloadButton = new System.Windows.Forms.Button();
             this.UploadButton = new System.Windows.Forms.Button();
+            this.DownloadButton = new System.Windows.Forms.Button();
+            this.ClientFilePathTextEdit = new System.Windows.Forms.TextBox();
+            this.cmdButton = new System.Windows.Forms.Button();
+            this.cmdInPutTextBox = new System.Windows.Forms.TextBox();
+            this.cmdOutPutTextBox = new System.Windows.Forms.TextBox();
             this.xtraTabPage2 = new DevExpress.XtraTab.XtraTabPage();
             this.xp_cmdshellpanelControl = new DevExpress.XtraEditors.PanelControl();
-            this.xp_cmdshellInPutTextBox = new System.Windows.Forms.TextBox();
-            this.xp_cmdshellOutPutTextBox = new System.Windows.Forms.TextBox();
             this.xp_cmdshellButton = new System.Windows.Forms.Button();
+            this.xp_cmdshellOutPutTextBox = new System.Windows.Forms.TextBox();
+            this.xp_cmdshellInPutTextBox = new System.Windows.Forms.TextBox();
             this.sqlserver = new DevExpress.XtraTab.XtraTabPage();
             this.sqlServerPanel = new DevExpress.XtraEditors.PanelControl();
-            this.sqlCommand = new System.Windows.Forms.TextBox();
-            this.sqlSearch = new System.Windows.Forms.Button();
-            this.sqlInfo = new System.Windows.Forms.TextBox();
-            this.refresh = new System.Windows.Forms.Button();
-            this.sign = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.sqlTreeView = new System.Windows.Forms.TreeView();
-            this.sqlStructure = new System.Windows.Forms.Label();
-            this.spreadsheetControl1 = new DevExpress.XtraSpreadsheet.SpreadsheetControl();
             this.saveButton = new System.Windows.Forms.Button();
+            this.spreadsheetControl1 = new DevExpress.XtraSpreadsheet.SpreadsheetControl();
+            this.sqlStructure = new System.Windows.Forms.Label();
+            this.sqlTreeView = new System.Windows.Forms.TreeView();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.sign = new System.Windows.Forms.Button();
+            this.refresh = new System.Windows.Forms.Button();
+            this.sqlInfo = new System.Windows.Forms.TextBox();
+            this.sqlSearch = new System.Windows.Forms.Button();
+            this.sqlCommand = new System.Windows.Forms.TextBox();
             this.xp_cmdshell = new DevExpress.XtraTab.XtraTabControl();
             this.cmd.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cmdpanelControl)).BeginInit();
@@ -117,6 +117,65 @@ namespace MSATServer
             this.cmdpanelControl.Size = new System.Drawing.Size(5519, 3035);
             this.cmdpanelControl.TabIndex = 0;
             // 
+            // UploadButton
+            // 
+            this.UploadButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.UploadButton.Location = new System.Drawing.Point(1323, 880);
+            this.UploadButton.Name = "UploadButton";
+            this.UploadButton.Size = new System.Drawing.Size(159, 50);
+            this.UploadButton.TabIndex = 5;
+            this.UploadButton.Text = "上传";
+            this.UploadButton.UseVisualStyleBackColor = true;
+            this.UploadButton.Click += new System.EventHandler(this.UploadButton_Click);
+            // 
+            // DownloadButton
+            // 
+            this.DownloadButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.DownloadButton.Location = new System.Drawing.Point(1323, 826);
+            this.DownloadButton.Name = "DownloadButton";
+            this.DownloadButton.Size = new System.Drawing.Size(159, 56);
+            this.DownloadButton.TabIndex = 4;
+            this.DownloadButton.Text = "下载";
+            this.DownloadButton.UseVisualStyleBackColor = true;
+            this.DownloadButton.Click += new System.EventHandler(this.DownloadButton_Click);
+            // 
+            // ClientFilePathTextEdit
+            // 
+            this.ClientFilePathTextEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.ClientFilePathTextEdit.Font = new System.Drawing.Font("Tahoma", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ClientFilePathTextEdit.Location = new System.Drawing.Point(808, 828);
+            this.ClientFilePathTextEdit.Multiline = true;
+            this.ClientFilePathTextEdit.Name = "ClientFilePathTextEdit";
+            this.ClientFilePathTextEdit.Size = new System.Drawing.Size(506, 94);
+            this.ClientFilePathTextEdit.TabIndex = 3;
+            this.ClientFilePathTextEdit.Text = "请输入想要下载的文件路径";
+            // 
+            // cmdButton
+            // 
+            this.cmdButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.cmdButton.Location = new System.Drawing.Point(682, 842);
+            this.cmdButton.Margin = new System.Windows.Forms.Padding(21);
+            this.cmdButton.Name = "cmdButton";
+            this.cmdButton.Size = new System.Drawing.Size(102, 70);
+            this.cmdButton.TabIndex = 2;
+            this.cmdButton.Text = "执行";
+            this.cmdButton.UseVisualStyleBackColor = true;
+            this.cmdButton.Click += new System.EventHandler(this.cmdButton_Click);
+            // 
+            // cmdInPutTextBox
+            // 
+            this.cmdInPutTextBox.AllowDrop = true;
+            this.cmdInPutTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.cmdInPutTextBox.Font = new System.Drawing.Font("Tahoma", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmdInPutTextBox.Location = new System.Drawing.Point(10, 828);
+            this.cmdInPutTextBox.Margin = new System.Windows.Forms.Padding(21);
+            this.cmdInPutTextBox.Multiline = true;
+            this.cmdInPutTextBox.Name = "cmdInPutTextBox";
+            this.cmdInPutTextBox.Size = new System.Drawing.Size(647, 97);
+            this.cmdInPutTextBox.TabIndex = 1;
+            this.cmdInPutTextBox.Text = "输入命令";
+            // 
             // cmdOutPutTextBox
             // 
             this.cmdOutPutTextBox.AcceptsReturn = true;
@@ -135,65 +194,6 @@ namespace MSATServer
             this.cmdOutPutTextBox.Text = "/**\r\n * \r\n * 下载文件，请在下方输入客户端的文件路径。\r\n * 上传文件，点击上传，选择文件点击确定即可。\r\n * 文件传输时未加密，若需要请加密压缩" +
     "后传输。\r\n * \r\n * */\r\n";
             this.cmdOutPutTextBox.TextChanged += new System.EventHandler(this.cmdOutPutTextBox_TextChanged);
-            // 
-            // cmdInPutTextBox
-            // 
-            this.cmdInPutTextBox.AllowDrop = true;
-            this.cmdInPutTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.cmdInPutTextBox.Font = new System.Drawing.Font("Tahoma", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmdInPutTextBox.Location = new System.Drawing.Point(10, 828);
-            this.cmdInPutTextBox.Margin = new System.Windows.Forms.Padding(21);
-            this.cmdInPutTextBox.Multiline = true;
-            this.cmdInPutTextBox.Name = "cmdInPutTextBox";
-            this.cmdInPutTextBox.Size = new System.Drawing.Size(647, 97);
-            this.cmdInPutTextBox.TabIndex = 1;
-            this.cmdInPutTextBox.Text = "输入命令";
-            // 
-            // cmdButton
-            // 
-            this.cmdButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.cmdButton.Location = new System.Drawing.Point(682, 842);
-            this.cmdButton.Margin = new System.Windows.Forms.Padding(21);
-            this.cmdButton.Name = "cmdButton";
-            this.cmdButton.Size = new System.Drawing.Size(102, 70);
-            this.cmdButton.TabIndex = 2;
-            this.cmdButton.Text = "执行";
-            this.cmdButton.UseVisualStyleBackColor = true;
-            this.cmdButton.Click += new System.EventHandler(this.cmdButton_Click);
-            // 
-            // ClientFilePathTextEdit
-            // 
-            this.ClientFilePathTextEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.ClientFilePathTextEdit.Font = new System.Drawing.Font("Tahoma", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ClientFilePathTextEdit.Location = new System.Drawing.Point(808, 828);
-            this.ClientFilePathTextEdit.Multiline = true;
-            this.ClientFilePathTextEdit.Name = "ClientFilePathTextEdit";
-            this.ClientFilePathTextEdit.Size = new System.Drawing.Size(506, 94);
-            this.ClientFilePathTextEdit.TabIndex = 3;
-            this.ClientFilePathTextEdit.Text = "请输入想要下载的文件路径";
-            // 
-            // DownloadButton
-            // 
-            this.DownloadButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.DownloadButton.Location = new System.Drawing.Point(1323, 826);
-            this.DownloadButton.Name = "DownloadButton";
-            this.DownloadButton.Size = new System.Drawing.Size(159, 56);
-            this.DownloadButton.TabIndex = 4;
-            this.DownloadButton.Text = "下载";
-            this.DownloadButton.UseVisualStyleBackColor = true;
-            this.DownloadButton.Click += new System.EventHandler(this.DownloadButton_Click);
-            // 
-            // UploadButton
-            // 
-            this.UploadButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.UploadButton.Location = new System.Drawing.Point(1323, 880);
-            this.UploadButton.Name = "UploadButton";
-            this.UploadButton.Size = new System.Drawing.Size(159, 50);
-            this.UploadButton.TabIndex = 5;
-            this.UploadButton.Text = "上传";
-            this.UploadButton.UseVisualStyleBackColor = true;
-            this.UploadButton.Click += new System.EventHandler(this.UploadButton_Click);
             // 
             // xtraTabPage2
             // 
@@ -217,18 +217,17 @@ namespace MSATServer
             this.xp_cmdshellpanelControl.Size = new System.Drawing.Size(2290, 1375);
             this.xp_cmdshellpanelControl.TabIndex = 0;
             // 
-            // xp_cmdshellInPutTextBox
+            // xp_cmdshellButton
             // 
-            this.xp_cmdshellInPutTextBox.AllowDrop = true;
-            this.xp_cmdshellInPutTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.xp_cmdshellButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.xp_cmdshellInPutTextBox.Font = new System.Drawing.Font("Tahoma", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.xp_cmdshellInPutTextBox.Location = new System.Drawing.Point(5, 791);
-            this.xp_cmdshellInPutTextBox.Multiline = true;
-            this.xp_cmdshellInPutTextBox.Name = "xp_cmdshellInPutTextBox";
-            this.xp_cmdshellInPutTextBox.Size = new System.Drawing.Size(1312, 127);
-            this.xp_cmdshellInPutTextBox.TabIndex = 1;
-            this.xp_cmdshellInPutTextBox.Text = "输入命令点击执行即可";
+            this.xp_cmdshellButton.Location = new System.Drawing.Point(1313, 791);
+            this.xp_cmdshellButton.Name = "xp_cmdshellButton";
+            this.xp_cmdshellButton.Size = new System.Drawing.Size(165, 127);
+            this.xp_cmdshellButton.TabIndex = 2;
+            this.xp_cmdshellButton.Text = "执行";
+            this.xp_cmdshellButton.UseVisualStyleBackColor = true;
+            this.xp_cmdshellButton.Click += new System.EventHandler(this.xp_cmdshellButton_Click);
             // 
             // xp_cmdshellOutPutTextBox
             // 
@@ -245,17 +244,18 @@ namespace MSATServer
             this.xp_cmdshellOutPutTextBox.Text = "请连接数据库！";
             this.xp_cmdshellOutPutTextBox.TextChanged += new System.EventHandler(this.xp_cmdshellOutPutTextBox_TextChanged);
             // 
-            // xp_cmdshellButton
+            // xp_cmdshellInPutTextBox
             // 
-            this.xp_cmdshellButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.xp_cmdshellInPutTextBox.AllowDrop = true;
+            this.xp_cmdshellInPutTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.xp_cmdshellButton.Location = new System.Drawing.Point(1313, 791);
-            this.xp_cmdshellButton.Name = "xp_cmdshellButton";
-            this.xp_cmdshellButton.Size = new System.Drawing.Size(165, 127);
-            this.xp_cmdshellButton.TabIndex = 2;
-            this.xp_cmdshellButton.Text = "执行";
-            this.xp_cmdshellButton.UseVisualStyleBackColor = true;
-            this.xp_cmdshellButton.Click += new System.EventHandler(this.xp_cmdshellButton_Click);
+            this.xp_cmdshellInPutTextBox.Font = new System.Drawing.Font("Tahoma", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.xp_cmdshellInPutTextBox.Location = new System.Drawing.Point(5, 791);
+            this.xp_cmdshellInPutTextBox.Multiline = true;
+            this.xp_cmdshellInPutTextBox.Name = "xp_cmdshellInPutTextBox";
+            this.xp_cmdshellInPutTextBox.Size = new System.Drawing.Size(1312, 127);
+            this.xp_cmdshellInPutTextBox.TabIndex = 1;
+            this.xp_cmdshellInPutTextBox.Text = "输入命令点击执行即可";
             // 
             // sqlserver
             // 
@@ -263,12 +263,11 @@ namespace MSATServer
             this.sqlserver.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("sqlserver.ImageOptions.SvgImage")));
             this.sqlserver.Margin = new System.Windows.Forms.Padding(32);
             this.sqlserver.Name = "sqlserver";
-            this.sqlserver.Size = new System.Drawing.Size(1489, 934);
+            this.sqlserver.Size = new System.Drawing.Size(1334, 901);
             this.sqlserver.Text = "SQL";
             // 
             // sqlServerPanel
             // 
-            this.sqlServerPanel.Controls.Add(this.saveButton);
             this.sqlServerPanel.Controls.Add(this.spreadsheetControl1);
             this.sqlServerPanel.Controls.Add(this.sqlStructure);
             this.sqlServerPanel.Controls.Add(this.sqlTreeView);
@@ -280,57 +279,83 @@ namespace MSATServer
             this.sqlServerPanel.Controls.Add(this.sqlInfo);
             this.sqlServerPanel.Controls.Add(this.sqlSearch);
             this.sqlServerPanel.Controls.Add(this.sqlCommand);
+            this.sqlServerPanel.Controls.Add(this.saveButton);
             this.sqlServerPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.sqlServerPanel.Location = new System.Drawing.Point(0, 0);
             this.sqlServerPanel.Margin = new System.Windows.Forms.Padding(32);
             this.sqlServerPanel.Name = "sqlServerPanel";
-            this.sqlServerPanel.Size = new System.Drawing.Size(1489, 934);
+            this.sqlServerPanel.Size = new System.Drawing.Size(2001, 1352);
             this.sqlServerPanel.TabIndex = 0;
             // 
-            // sqlCommand
+            // saveButton
             // 
-            this.sqlCommand.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.saveButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.saveButton.Location = new System.Drawing.Point(1887, 58);
+            this.saveButton.Margin = new System.Windows.Forms.Padding(32);
+            this.saveButton.Name = "saveButton";
+            this.saveButton.Size = new System.Drawing.Size(109, 49);
+            this.saveButton.TabIndex = 15;
+            this.saveButton.Text = "导出";
+            this.saveButton.UseVisualStyleBackColor = true;
+            this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
+            // 
+            // spreadsheetControl1
+            // 
+            this.spreadsheetControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.sqlCommand.Font = new System.Drawing.Font("Tahoma", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.sqlCommand.Location = new System.Drawing.Point(915, 4);
-            this.sqlCommand.Margin = new System.Windows.Forms.Padding(32);
-            this.sqlCommand.Multiline = true;
-            this.sqlCommand.Name = "sqlCommand";
-            this.sqlCommand.Size = new System.Drawing.Size(455, 103);
-            this.sqlCommand.TabIndex = 3;
+            this.spreadsheetControl1.Location = new System.Drawing.Point(330, 115);
+            this.spreadsheetControl1.Name = "spreadsheetControl1";
+            this.spreadsheetControl1.Size = new System.Drawing.Size(1666, 1232);
+            this.spreadsheetControl1.TabIndex = 14;
+            this.spreadsheetControl1.Text = "spreadsheetControl1";
             // 
-            // sqlSearch
+            // sqlStructure
             // 
-            this.sqlSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.sqlSearch.Location = new System.Drawing.Point(1375, 5);
-            this.sqlSearch.Margin = new System.Windows.Forms.Padding(32);
-            this.sqlSearch.Name = "sqlSearch";
-            this.sqlSearch.Size = new System.Drawing.Size(109, 47);
-            this.sqlSearch.TabIndex = 4;
-            this.sqlSearch.Text = "查询";
-            this.sqlSearch.UseVisualStyleBackColor = true;
-            this.sqlSearch.Click += new System.EventHandler(this.sqlSearch_Click);
+            this.sqlStructure.AutoSize = true;
+            this.sqlStructure.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.sqlStructure.Location = new System.Drawing.Point(7, 115);
+            this.sqlStructure.Name = "sqlStructure";
+            this.sqlStructure.Size = new System.Drawing.Size(254, 24);
+            this.sqlStructure.TabIndex = 13;
+            this.sqlStructure.Text = "数据库结构(库名-表名-字段名)";
             // 
-            // sqlInfo
+            // sqlTreeView
             // 
-            this.sqlInfo.Location = new System.Drawing.Point(5, 1);
-            this.sqlInfo.Margin = new System.Windows.Forms.Padding(32);
-            this.sqlInfo.Multiline = true;
-            this.sqlInfo.Name = "sqlInfo";
-            this.sqlInfo.ReadOnly = true;
-            this.sqlInfo.Size = new System.Drawing.Size(807, 106);
-            this.sqlInfo.TabIndex = 5;
+            this.sqlTreeView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.sqlTreeView.Location = new System.Drawing.Point(5, 142);
+            this.sqlTreeView.Name = "sqlTreeView";
+            this.sqlTreeView.Size = new System.Drawing.Size(316, 1205);
+            this.sqlTreeView.TabIndex = 12;
             // 
-            // refresh
+            // textBox3
             // 
-            this.refresh.Location = new System.Drawing.Point(816, 58);
-            this.refresh.Margin = new System.Windows.Forms.Padding(32);
-            this.refresh.Name = "refresh";
-            this.refresh.Size = new System.Drawing.Size(92, 49);
-            this.refresh.TabIndex = 6;
-            this.refresh.Text = "刷新";
-            this.refresh.UseVisualStyleBackColor = true;
-            this.refresh.Click += new System.EventHandler(this.refresh_Click);
+            this.textBox3.Location = new System.Drawing.Point(11, 70);
+            this.textBox3.Multiline = true;
+            this.textBox3.Name = "textBox3";
+            this.textBox3.ReadOnly = true;
+            this.textBox3.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.textBox3.Size = new System.Drawing.Size(795, 32);
+            this.textBox3.TabIndex = 11;
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(330, 5);
+            this.textBox2.Multiline = true;
+            this.textBox2.Name = "textBox2";
+            this.textBox2.ReadOnly = true;
+            this.textBox2.Size = new System.Drawing.Size(476, 59);
+            this.textBox2.TabIndex = 10;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(11, 5);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
+            this.textBox1.Size = new System.Drawing.Size(310, 59);
+            this.textBox1.TabIndex = 9;
             // 
             // sign
             // 
@@ -344,75 +369,50 @@ namespace MSATServer
             this.sign.UseVisualStyleBackColor = true;
             this.sign.Click += new System.EventHandler(this.sign_Click);
             // 
-            // textBox1
+            // refresh
             // 
-            this.textBox1.Location = new System.Drawing.Point(11, 5);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(310, 59);
-            this.textBox1.TabIndex = 9;
+            this.refresh.Location = new System.Drawing.Point(816, 58);
+            this.refresh.Margin = new System.Windows.Forms.Padding(32);
+            this.refresh.Name = "refresh";
+            this.refresh.Size = new System.Drawing.Size(92, 49);
+            this.refresh.TabIndex = 6;
+            this.refresh.Text = "刷新";
+            this.refresh.UseVisualStyleBackColor = true;
+            this.refresh.Click += new System.EventHandler(this.refresh_Click);
             // 
-            // textBox2
+            // sqlInfo
             // 
-            this.textBox2.Location = new System.Drawing.Point(330, 5);
-            this.textBox2.Multiline = true;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.ReadOnly = true;
-            this.textBox2.Size = new System.Drawing.Size(476, 59);
-            this.textBox2.TabIndex = 10;
+            this.sqlInfo.Location = new System.Drawing.Point(5, 1);
+            this.sqlInfo.Margin = new System.Windows.Forms.Padding(32);
+            this.sqlInfo.Multiline = true;
+            this.sqlInfo.Name = "sqlInfo";
+            this.sqlInfo.ReadOnly = true;
+            this.sqlInfo.Size = new System.Drawing.Size(807, 106);
+            this.sqlInfo.TabIndex = 5;
             // 
-            // textBox3
+            // sqlSearch
             // 
-            this.textBox3.Location = new System.Drawing.Point(11, 70);
-            this.textBox3.Multiline = true;
-            this.textBox3.Name = "textBox3";
-            this.textBox3.ReadOnly = true;
-            this.textBox3.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.textBox3.Size = new System.Drawing.Size(795, 32);
-            this.textBox3.TabIndex = 11;
+            this.sqlSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.sqlSearch.Location = new System.Drawing.Point(1887, 5);
+            this.sqlSearch.Margin = new System.Windows.Forms.Padding(32);
+            this.sqlSearch.Name = "sqlSearch";
+            this.sqlSearch.Size = new System.Drawing.Size(109, 47);
+            this.sqlSearch.TabIndex = 4;
+            this.sqlSearch.Text = "查询";
+            this.sqlSearch.UseVisualStyleBackColor = true;
+            this.sqlSearch.Click += new System.EventHandler(this.sqlSearch_Click);
             // 
-            // sqlTreeView
+            // sqlCommand
             // 
-            this.sqlTreeView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.sqlTreeView.Location = new System.Drawing.Point(5, 142);
-            this.sqlTreeView.Name = "sqlTreeView";
-            this.sqlTreeView.Size = new System.Drawing.Size(316, 787);
-            this.sqlTreeView.TabIndex = 12;
-            // 
-            // sqlStructure
-            // 
-            this.sqlStructure.AutoSize = true;
-            this.sqlStructure.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.sqlStructure.Location = new System.Drawing.Point(7, 115);
-            this.sqlStructure.Name = "sqlStructure";
-            this.sqlStructure.Size = new System.Drawing.Size(254, 24);
-            this.sqlStructure.TabIndex = 13;
-            this.sqlStructure.Text = "数据库结构(库名-表名-字段名)";
-            // 
-            // spreadsheetControl1
-            // 
-            this.spreadsheetControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.sqlCommand.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.spreadsheetControl1.Location = new System.Drawing.Point(330, 115);
-            this.spreadsheetControl1.Name = "spreadsheetControl1";
-            this.spreadsheetControl1.Size = new System.Drawing.Size(1154, 814);
-            this.spreadsheetControl1.TabIndex = 14;
-            this.spreadsheetControl1.Text = "spreadsheetControl1";
-            // 
-            // saveButton
-            // 
-            this.saveButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.saveButton.Location = new System.Drawing.Point(1375, 58);
-            this.saveButton.Margin = new System.Windows.Forms.Padding(32);
-            this.saveButton.Name = "saveButton";
-            this.saveButton.Size = new System.Drawing.Size(109, 49);
-            this.saveButton.TabIndex = 15;
-            this.saveButton.Text = "导出";
-            this.saveButton.UseVisualStyleBackColor = true;
-            this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
+            this.sqlCommand.Font = new System.Drawing.Font("Tahoma", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.sqlCommand.Location = new System.Drawing.Point(915, 4);
+            this.sqlCommand.Margin = new System.Windows.Forms.Padding(32);
+            this.sqlCommand.Multiline = true;
+            this.sqlCommand.Name = "sqlCommand";
+            this.sqlCommand.Size = new System.Drawing.Size(967, 103);
+            this.sqlCommand.TabIndex = 3;
             // 
             // xp_cmdshell
             // 
@@ -421,7 +421,7 @@ namespace MSATServer
             this.xp_cmdshell.Margin = new System.Windows.Forms.Padding(32);
             this.xp_cmdshell.Name = "xp_cmdshell";
             this.xp_cmdshell.SelectedTabPage = this.sqlserver;
-            this.xp_cmdshell.Size = new System.Drawing.Size(1491, 998);
+            this.xp_cmdshell.Size = new System.Drawing.Size(1336, 965);
             this.xp_cmdshell.TabIndex = 1;
             this.xp_cmdshell.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.sqlserver,
@@ -432,7 +432,7 @@ namespace MSATServer
             // 
             // MSATServer
             // 
-            this.ClientSize = new System.Drawing.Size(1491, 998);
+            this.ClientSize = new System.Drawing.Size(1336, 965);
             this.Controls.Add(this.xp_cmdshell);
             this.HtmlText = "MSATServer";
             this.IconOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("MSATServer.IconOptions.SvgImage")));
