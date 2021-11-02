@@ -1,11 +1,4 @@
 ﻿using System;
-//using System.Collections.Generic;
-//using System.ComponentModel;
-//using System.Data;
-//using System.Drawing;
-//using System.Linq;
-//using System.Text;
-//using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace MSATServer
@@ -38,9 +31,9 @@ namespace MSATServer
             return flag;
         }
 
-        public String GetHost() {
-            return this.serverhost.Text.ToString();
-        }
+        /**public String GetHost() {
+            return "0.0.0.0";
+        }**/
 
         public int GetPort()
         {
@@ -49,8 +42,6 @@ namespace MSATServer
 
         private void yes_Click(object sender, EventArgs e)
         {
-            // Loading loading = new Loading();
-            //Application.Run(loading);
             loading.Show();
             this.Hide();
             flag = true;
@@ -58,7 +49,7 @@ namespace MSATServer
 
         private void back_Click(object sender, EventArgs e)
         {
-            System.Environment.Exit(0);
+            System.Environment.Exit(System.Environment.ExitCode);
         }
 
         private void Listening_Load(object sender, EventArgs e)

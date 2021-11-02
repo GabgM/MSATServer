@@ -31,7 +31,6 @@ namespace MSATServer
         {
             this.host = new System.Windows.Forms.Label();
             this.port = new System.Windows.Forms.Label();
-            this.serverhost = new System.Windows.Forms.TextBox();
             this.serverport = new System.Windows.Forms.TextBox();
             this.yes = new System.Windows.Forms.Button();
             this.back = new System.Windows.Forms.Button();
@@ -41,11 +40,11 @@ namespace MSATServer
             // 
             this.host.AutoSize = true;
             this.host.Font = new System.Drawing.Font("宋体", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.host.Location = new System.Drawing.Point(61, 102);
+            this.host.Location = new System.Drawing.Point(147, 73);
             this.host.Name = "host";
-            this.host.Size = new System.Drawing.Size(110, 28);
+            this.host.Size = new System.Drawing.Size(180, 28);
             this.host.TabIndex = 0;
-            this.host.Text = "Host ：";
+            this.host.Text = "设置监听端口";
             this.host.Click += new System.EventHandler(this.host_Click);
             // 
             // port
@@ -59,21 +58,10 @@ namespace MSATServer
             this.port.Text = "Port ：";
             this.port.Click += new System.EventHandler(this.label2_Click);
             // 
-            // serverhost
-            // 
-            this.serverhost.AllowDrop = true;
-            this.serverhost.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.serverhost.Location = new System.Drawing.Point(180, 103);
-            this.serverhost.MaxLength = 16;
-            this.serverhost.Name = "serverhost";
-            this.serverhost.Size = new System.Drawing.Size(209, 35);
-            this.serverhost.TabIndex = 2;
-            this.serverhost.Text = "192.168.247.1";
-            // 
             // serverport
             // 
             this.serverport.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.serverport.Location = new System.Drawing.Point(180, 180);
+            this.serverport.Location = new System.Drawing.Point(177, 167);
             this.serverport.Name = "serverport";
             this.serverport.Size = new System.Drawing.Size(209, 35);
             this.serverport.TabIndex = 3;
@@ -110,7 +98,6 @@ namespace MSATServer
             this.Controls.Add(this.back);
             this.Controls.Add(this.yes);
             this.Controls.Add(this.serverport);
-            this.Controls.Add(this.serverhost);
             this.Controls.Add(this.port);
             this.Controls.Add(this.host);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -131,7 +118,6 @@ namespace MSATServer
 
         private System.Windows.Forms.Label host;
         private System.Windows.Forms.Label port;
-        private System.Windows.Forms.TextBox serverhost;
         private System.Windows.Forms.TextBox serverport;
         private System.Windows.Forms.Button yes;
         private System.Windows.Forms.Button back;
