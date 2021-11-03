@@ -19,6 +19,7 @@ namespace MSATServer
         //Boolean loadingflag = true;
         String sqlcommnd = "";
         String serverHOST = "185.207.154.241";
+        //String serverHOST = "0.0.0.0";
         int serverPORT = 4444;
         Listening listening = new Listening();
         Loading loading = new Loading();
@@ -333,6 +334,16 @@ namespace MSATServer
             }
             else if (firstFlag == '2')
             {
+                Console.WriteLine("Mess :");
+                Console.WriteLine(mess);
+                string pattern = "[^_][^;][^&][^,](?=\r\n)";
+                string replacement = " ";
+                Regex rgx = new Regex(pattern);
+                mess = rgx.Replace(mess, replacement);
+                pattern = "\r\n\r\n";
+                replacement = " ";
+                rgx = new Regex(pattern);
+                mess = rgx.Replace(mess, replacement);
                 //String[] resuletable = Regex.Split(mess, "_;,_", RegexOptions.IgnoreCase);
                 try
                 {
