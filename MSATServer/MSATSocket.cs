@@ -47,7 +47,7 @@ namespace MSATServer
                             messFlag = getmess;
                             while (lenFlag < dataLenth)
                             {
-                                Console.WriteLine(DateTime.Now.ToString("MM-dd HH:mm:ss  ") + "(本数据包长度为：" + dataLenth + "；标志位：" + firstFlag + "；数据包总长度：" + lenFlag + "): " + mess);
+                                //Console.WriteLine(DateTime.Now.ToString("MM-dd HH:mm:ss  ") + "(本数据包长度为：" + dataLenth + "；标志位：" + firstFlag + "；数据包总长度：" + lenFlag + "): " + mess);
                                 while (firstFlag == '4')
                                 {
                                     getmess = getmess.Substring(lenFlag);
@@ -97,7 +97,7 @@ namespace MSATServer
                              Console.WriteLine(ex.Message + "\r\ndataLenth:" + dataLenth + "; allFlag:" + allFlag + "; \r\n异常的数据:" + mess + "; \r\n获取的所有数据:" + messFlag);
                          }
                         dealMess(tcpClient, mess, firstFlag,msat);
-                        Console.WriteLine(DateTime.Now.ToString("MM-dd HH:mm:ss  ") + "(本数据包长度为：" + dataLenth + "；标志位：" + firstFlag + "；数据包总长度：" + lenFlag + "): " + mess);
+                        //Console.WriteLine(DateTime.Now.ToString("MM-dd HH:mm:ss  ") + "(本数据包长度为：" + dataLenth + "；标志位：" + firstFlag + "；数据包总长度：" + lenFlag + "): " + mess);
 
                         //String allFlag = getmess.Substring(0, 12);
                         //String mess = "";
@@ -190,6 +190,7 @@ namespace MSATServer
                         if (result == DialogResult.OK)
                         {
                             msat.SaveData();
+                            System.Environment.Exit(0);
                         }
                     }
                 }
@@ -206,7 +207,7 @@ namespace MSATServer
                 byte[] Filebuffer = new byte[1024 * 1024 * 3];
                 if (filename == clientInfo[0])
                 {
-                    String savePath = System.Windows.Forms.Application.StartupPath + "\\" + filename;
+                    String savePath = System.Windows.Forms.Application.StartupPath + "\\download\\" + filename;
                     int rec = 0;//定义获取接受数据的长度初始值
                     long recFileLength = 0;
                     using (FileStream fs = new FileStream(savePath, FileMode.Create, FileAccess.Write))

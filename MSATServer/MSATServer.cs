@@ -18,8 +18,8 @@ namespace MSATServer
 
         //Boolean loadingflag = true;
         String sqlcommnd = "";
-        String serverHOST = "185.207.154.241";
-        //String serverHOST = "0.0.0.0";
+        //String serverHOST = "185.207.154.241";
+        String serverHOST = "0.0.0.0";
         int serverPORT = 4444;
         Listening listening = new Listening();
         Loading loading = new Loading();
@@ -27,7 +27,29 @@ namespace MSATServer
 
         public MSATServer()
         {
-
+            try
+            {
+                if (!System.IO.Directory.Exists("tmp"))
+                {
+                    System.IO.Directory.CreateDirectory("tmp");//不存在就创建文件夹
+                }
+                if (!System.IO.Directory.Exists("download"))
+                {
+                    System.IO.Directory.CreateDirectory("download");//不存在就创建文件夹
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBoxButtons messButton = MessageBoxButtons.OK;
+                DialogResult result = MessageBox.Show("创建目录失败\r\n" + ex.Message + "\r\n请手动在软件根目录创建tmp，download目录后，再重新打开软件！", "退出", messButton);
+                if (result == DialogResult.OK)
+                {
+                    Console.WriteLine("全部退出");
+                    Application.Exit();
+                    //System.Environment.Exit(System.Environment.ExitCode);
+                }
+            }
+            
             listening.Show();
             listening.SetLoading(loading);
             new Thread(() =>
@@ -43,11 +65,11 @@ namespace MSATServer
                 Console.WriteLine(serverHOST + ":" + serverPORT);
                 IPEndPoint serverIP = new IPEndPoint(IPAddress.Parse(serverHOST), serverPORT);
                 Socket tcpServer = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-                /**tcpServer.Bind(serverIP);
+                tcpServer.Bind(serverIP);
                 tcpServer.Listen(1000);
-                tcpClient = tcpServer.Accept();**/
-                tcpClient = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-                tcpClient.Connect(serverIP);
+                tcpClient = tcpServer.Accept();
+                /**tcpClient = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+                tcpClient.Connect(serverIP);**/
 
                 Console.WriteLine("连接成功！\r\n");
                 MSATSocket.TcpServer(tcpClient,this);
@@ -77,39 +99,48 @@ namespace MSATServer
             if (result == DialogResult.Yes)
             {
                 Console.WriteLine("全部退出");
-                using (StreamWriter sw = new StreamWriter("xp_cmdshellOutPut.txt"))
+                MSATSocket.SendMess(tcpClient, "Exit", "e");
+                SaveData();
+                /**using (StreamWriter sw = new StreamWriter("tmp\\xp_cmdshellOutPut.txt"))
                 {
                     sw.WriteLine(xp_cmdshellOutPutTextBox.Text);
                     sw.Close();
                 }
-                using (StreamWriter sw = new StreamWriter("CmdOutPut.txt"))
+                using (StreamWriter sw = new StreamWriter("tmp\\CmdOutPut.txt"))
                 {
                     sw.WriteLine(cmdOutPutTextBox.Text);
                     sw.Close();
-                }
-                MSATSocket.SendMess(tcpClient, "Exit", "e");
-                System.Environment.Exit(System.Environment.ExitCode);
+                }**/
+                System.Environment.Exit(0);
             }
             else if (result == DialogResult.No)
             {
                 Console.WriteLine("仅退出");
-                using (StreamWriter sw = new StreamWriter("xp_cmdshellOutPut.txt"))
+                SaveData();
+                /**using (StreamWriter sw = new StreamWriter("tmp\\xp_cmdshellOutPut.txt"))
                 {
                     sw.WriteLine(xp_cmdshellOutPutTextBox.Text);
                     sw.Close();
                 }
-                using (StreamWriter sw = new StreamWriter("CmdOutPut.txt"))
+                using (StreamWriter sw = new StreamWriter("tmp\\CmdOutPut.txt"))
                 {
                     sw.WriteLine(cmdOutPutTextBox.Text);
                     sw.Close();
-                }
-                System.Environment.Exit(System.Environment.ExitCode);
+                }**/
+                System.Environment.Exit(0);
             }
             else
             {
                 Console.WriteLine("取消退出");
                 e.Cancel = true;
             }
+        }
+
+        private void MSATServer_FormClosed(object sender, FormClosingEventArgs e)
+        {
+            Dispose();
+            listening.Close();
+            login.Close();
         }
 
         private void sign_Click(object sender, EventArgs e)
@@ -144,15 +175,17 @@ namespace MSATServer
                 result = MessageBox.Show("Socket连接断开！" + ex.Message + "请退出程序后重新连接！\r\n确定退出吗？", "退出", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
                 if (result == DialogResult.OK)
                 {
-                    using (StreamWriter sw = new StreamWriter("xp_cmdshellOutPut.txt"))
+                    SaveData();
+                    /**using (StreamWriter sw = new StreamWriter("tmp\\xp_cmdshellOutPut.txt"))
                     {
                         sw.WriteLine(xp_cmdshellOutPutTextBox.Text);
                     }
-                    using (StreamWriter sw = new StreamWriter("CmdOutPut.txt"))
+                    using (StreamWriter sw = new StreamWriter("tmp\\CmdOutPut.txt"))
                     {
                         sw.WriteLine(cmdOutPutTextBox.Text);
-                    }
-                    System.Environment.Exit(System.Environment.ExitCode);
+                    }**/
+                    Application.Exit();
+                    //System.Environment.Exit(System.Environment.ExitCode);
                 }
             }
         }
@@ -199,11 +232,11 @@ namespace MSATServer
                     command = rgx.Replace(m.Value, "");
                     break;
                 }
-                command = login.GetsqlIP() + "-" + command + ".xlsx";
+                command = "\\download\\" + login.GetsqlIP() + "-" + command + ".xlsx";
                 Workbook workbook = new Workbook();
-                workbook.LoadFromFile(".tmp.xlsx");
-                workbook.SaveToFile(command, ExcelVersion.Version2013);
-                MessageBox.Show("导出路径：" + System.Windows.Forms.Application.StartupPath + "\\" + command, "导出成功");
+                workbook.LoadFromFile("tmp\\tmp.xlsx");
+                workbook.SaveToFile(System.Windows.Forms.Application.StartupPath + command, ExcelVersion.Version2013);
+                MessageBox.Show("导出路径：" + System.Windows.Forms.Application.StartupPath +  command, "导出成功");
             }
             catch (Exception ex)
             {
@@ -325,6 +358,7 @@ namespace MSATServer
                     {
                         this.Invoke((MethodInvoker)delegate
                         {
+                            sqlTreeView.Nodes.Clear();
                             TreeNode failTN = new TreeNode("数据库结构获取失败！");
                             sqlTreeView.Nodes.Add(failTN);
                             sqlCommand.Text = "数据库结构获取失败！";
@@ -334,21 +368,26 @@ namespace MSATServer
             }
             else if (firstFlag == '2')
             {
-                Console.WriteLine("Mess :");
-                Console.WriteLine(mess);
-                string pattern = "[^_][^;][^&][^,](?=\r\n)";
-                string replacement = " ";
+                /**string pattern = "[^_][^;][^&][^,](?=\r\n)";
+                string replacement = "";
                 Regex rgx = new Regex(pattern);
                 mess = rgx.Replace(mess, replacement);
                 pattern = "\r\n\r\n";
                 replacement = " ";
                 rgx = new Regex(pattern);
-                mess = rgx.Replace(mess, replacement);
+                mess = rgx.Replace(mess, replacement);**/
+                /**using (StreamWriter sw = new StreamWriter("test.txt", false, Encoding.UTF8))
+                {
+                    sw.WriteLine(mess);
+                }**/
+                mess = mess.Replace("\r\n", "");
+
+                mess = mess.Replace("GabgMMgbaG_;&,", "_;&,\r\n");
                 //String[] resuletable = Regex.Split(mess, "_;,_", RegexOptions.IgnoreCase);
                 try
                 {
                     //Console.WriteLine(mess);
-                    using (StreamWriter sw = new StreamWriter(".tmp.csv", false, Encoding.UTF8))
+                    using (StreamWriter sw = new StreamWriter("tmp\\tmp.csv", false, Encoding.UTF8))
                     {
                         sw.WriteLine(mess);
                     }
@@ -361,8 +400,8 @@ namespace MSATServer
                 }
 
                 Workbook workbook = new Workbook();
-                workbook.LoadFromFile(".tmp.csv", "_;&,", 1, 1);
-                workbook.SaveToFile(".tmp.xlsx", ExcelVersion.Version2013);
+                workbook.LoadFromFile("tmp\\tmp.csv", "_;&,", 1, 1);
+                workbook.SaveToFile("tmp\\tmp.xlsx", ExcelVersion.Version2013);
                 DevExpress.Spreadsheet.Worksheet spreadsheet = spreadsheetControl1.ActiveWorksheet.Workbook.Worksheets[0];
                 this.Invoke((MethodInvoker)delegate
                 {
@@ -371,7 +410,7 @@ namespace MSATServer
                     //var da = worksheet.GetDataRange();//获得有数据的区域
                     //worksheet.Columns.AutoFit(0, da.ColumnCount);//从0列到有数据的列自动列宽
 
-                    spreadsheet.Workbook.LoadDocument(".tmp.xlsx", DocumentFormat.OpenXml);
+                    spreadsheet.Workbook.LoadDocument("tmp\\tmp.xlsx", DocumentFormat.OpenXml);
                     /**var da = spreadsheetControl1.ActiveWorksheet.GetUsedRange();//获得有数据的区域     //结果长度自适应，大量数据会造成卡顿
                     spreadsheetControl1.ActiveWorksheet.Columns.AutoFit(0, da.ColumnCount);
                     spreadsheetControl1.ActiveWorksheet.FreezeRows(0, da);
@@ -486,15 +525,18 @@ namespace MSATServer
 
         public void SaveData()
         {
-            using (StreamWriter sw = new StreamWriter("xp_cmdshellOutPut.txt"))
+            using (StreamWriter sw = new StreamWriter("tmp\\xp_cmdshellOutPut.txt"))
             {
                 sw.WriteLine(xp_cmdshellOutPutTextBox.Text);
             }
-            using (StreamWriter sw = new StreamWriter("CmdOutPut.txt"))
+            using (StreamWriter sw = new StreamWriter("tmp\\CmdOutPut.txt"))
             {
                 sw.WriteLine(cmdOutPutTextBox.Text);
             }
-            System.Environment.Exit(System.Environment.ExitCode);
+            Dispose();
+            listening.Close();
+            login.Close();
+            System.Environment.Exit(0);
         }
 
     }

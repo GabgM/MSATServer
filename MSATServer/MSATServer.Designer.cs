@@ -422,6 +422,7 @@ namespace MSATServer
             this.Name = "MSATServer";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MSATServer_FormClosing);
+            //this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MSATServer_FormClosed);
             this.Load += new System.EventHandler(this.MSATServer_Load);
             this.cmd.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.cmdpanelControl)).EndInit();
