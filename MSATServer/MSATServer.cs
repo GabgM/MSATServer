@@ -18,7 +18,6 @@ namespace MSATServer
 
         //Boolean loadingflag = true;
         String sqlcommnd = "";
-        //String serverHOST = "185.207.154.241";
         String serverHOST = "0.0.0.0";
         int serverPORT = 4444;
         Listening listening = new Listening();
@@ -60,17 +59,22 @@ namespace MSATServer
                     a = listening.Getflag();
                 }
                 Console.WriteLine("Listen...");
-                //serverHOST = listening.GetHost();
+                serverHOST = listening.GetHost();
                 serverPORT = listening.GetPort();
                 Console.WriteLine(serverHOST + ":" + serverPORT);
                 IPEndPoint serverIP = new IPEndPoint(IPAddress.Parse(serverHOST), serverPORT);
                 Socket tcpServer = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-                tcpServer.Bind(serverIP);
-                tcpServer.Listen(1000);
-                tcpClient = tcpServer.Accept();
-                /**tcpClient = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-                tcpClient.Connect(serverIP);**/
-
+                if (serverHOST == "0.0.0.0")
+                {
+                    tcpServer.Bind(serverIP);
+                    tcpServer.Listen(1000);
+                    tcpClient = tcpServer.Accept();
+                }
+                else
+                { 
+                    tcpClient = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+                    tcpClient.Connect(serverIP);
+                }
                 Console.WriteLine("连接成功！\r\n");
                 MSATSocket.TcpServer(tcpClient,this);
                 this.Invoke((MethodInvoker)delegate
@@ -95,38 +99,18 @@ namespace MSATServer
         {
             Console.WriteLine("正在关闭程序!");
             MessageBoxButtons messButton = MessageBoxButtons.YesNoCancel;
-            DialogResult result = MessageBox.Show("确定要退出服务端并关闭服务端吗?", "退出" ,messButton);
+            DialogResult result = MessageBox.Show("确定要退出服务端并关闭客户端吗?", "退出" ,messButton);
             if (result == DialogResult.Yes)
             {
                 Console.WriteLine("全部退出");
                 MSATSocket.SendMess(tcpClient, "Exit", "e");
                 SaveData();
-                /**using (StreamWriter sw = new StreamWriter("tmp\\xp_cmdshellOutPut.txt"))
-                {
-                    sw.WriteLine(xp_cmdshellOutPutTextBox.Text);
-                    sw.Close();
-                }
-                using (StreamWriter sw = new StreamWriter("tmp\\CmdOutPut.txt"))
-                {
-                    sw.WriteLine(cmdOutPutTextBox.Text);
-                    sw.Close();
-                }**/
                 System.Environment.Exit(0);
             }
             else if (result == DialogResult.No)
             {
                 Console.WriteLine("仅退出");
                 SaveData();
-                /**using (StreamWriter sw = new StreamWriter("tmp\\xp_cmdshellOutPut.txt"))
-                {
-                    sw.WriteLine(xp_cmdshellOutPutTextBox.Text);
-                    sw.Close();
-                }
-                using (StreamWriter sw = new StreamWriter("tmp\\CmdOutPut.txt"))
-                {
-                    sw.WriteLine(cmdOutPutTextBox.Text);
-                    sw.Close();
-                }**/
                 System.Environment.Exit(0);
             }
             else

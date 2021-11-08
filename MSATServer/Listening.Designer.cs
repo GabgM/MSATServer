@@ -34,17 +34,18 @@ namespace MSATServer
             this.serverport = new System.Windows.Forms.TextBox();
             this.yes = new System.Windows.Forms.Button();
             this.back = new System.Windows.Forms.Button();
+            this.serverHost = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // host
             // 
             this.host.AutoSize = true;
             this.host.Font = new System.Drawing.Font("宋体", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.host.Location = new System.Drawing.Point(147, 73);
+            this.host.Location = new System.Drawing.Point(61, 110);
             this.host.Name = "host";
-            this.host.Size = new System.Drawing.Size(180, 28);
+            this.host.Size = new System.Drawing.Size(110, 28);
             this.host.TabIndex = 0;
-            this.host.Text = "设置监听端口";
+            this.host.Text = "Host ：";
             this.host.Click += new System.EventHandler(this.host_Click);
             // 
             // port
@@ -89,12 +90,22 @@ namespace MSATServer
             this.back.UseVisualStyleBackColor = true;
             this.back.Click += new System.EventHandler(this.back_Click);
             // 
+            // serverHost
+            // 
+            this.serverHost.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.serverHost.Location = new System.Drawing.Point(177, 110);
+            this.serverHost.Name = "serverHost";
+            this.serverHost.Size = new System.Drawing.Size(209, 35);
+            this.serverHost.TabIndex = 6;
+            this.serverHost.Text = "0.0.0.0";
+            // 
             // Listening
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(492, 398);
             this.ControlBox = false;
+            this.Controls.Add(this.serverHost);
             this.Controls.Add(this.back);
             this.Controls.Add(this.yes);
             this.Controls.Add(this.serverport);
@@ -121,5 +132,6 @@ namespace MSATServer
         private System.Windows.Forms.TextBox serverport;
         private System.Windows.Forms.Button yes;
         private System.Windows.Forms.Button back;
+        private System.Windows.Forms.TextBox serverHost;
     }
 }

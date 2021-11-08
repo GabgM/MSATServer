@@ -31,9 +31,9 @@ namespace MSATServer
             return flag;
         }
 
-        /**public String GetHost() {
-            return "0.0.0.0";
-        }**/
+        public String GetHost() {
+            return serverHost.Text;//"0.0.0.0";
+        }
 
         public int GetPort()
         {
